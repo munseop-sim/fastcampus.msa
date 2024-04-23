@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="17">
+      <module name="membership" target="21" />
+      <module name="membership.main" target="21" />
+      <module name="membership.test" target="21" />
+      <module name="spring.msa.main" target="1.8" />
+      <module name="spring.msa.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
