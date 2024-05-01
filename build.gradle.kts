@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-group = "ms2709.msa"
+group = "ms2709.pay-service"
 version = "1.0-SNAPSHOT"
 
 repositories {

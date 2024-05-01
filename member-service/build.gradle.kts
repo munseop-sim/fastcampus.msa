@@ -8,7 +8,7 @@ plugins {
     kotlin("plugin.jpa") version "1.9.23"
 }
 
-group = "ms2709"
+group = "ms2709.pay-service.member"
 version = "0.0.1-SNAPSHOT"
 
 java {
@@ -30,6 +30,8 @@ dependencies {
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
+
+    implementation(project(":global"))
 }
 
 tasks.withType<KotlinCompile> {
