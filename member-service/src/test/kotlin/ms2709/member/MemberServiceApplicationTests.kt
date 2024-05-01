@@ -1,4 +1,4 @@
-package ms2709.msa.member
+package ms2709.member
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
