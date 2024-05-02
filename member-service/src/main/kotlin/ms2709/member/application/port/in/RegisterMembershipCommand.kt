@@ -3,8 +3,7 @@ package ms2709.member.application.port.`in`
 import jakarta.validation.constraints.AssertTrue
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
-import ms2709.member.application.port.`in`.RegisterMembershipCommand
-import ms2709.member.global.SelfValidating
+import ms2709.global.SelfValidating
 
 /**
  *
@@ -15,7 +14,7 @@ import ms2709.member.global.SelfValidating
  * @version 1.0
  * @since 2024-04-29 10:09PM
  */
-class RegisterMembershipCommand:SelfValidating<RegisterMembershipCommand> {
+class RegisterMembershipCommand: SelfValidating<RegisterMembershipCommand> {
 
     @NotNull
     val name: String

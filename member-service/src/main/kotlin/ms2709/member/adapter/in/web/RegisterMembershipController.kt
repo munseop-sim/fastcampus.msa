@@ -1,12 +1,13 @@
 package ms2709.member.adapter.`in`.web
 
+import ms2709.global.WebAdapter
 import ms2709.member.application.port.`in`.RegisterMembershipCommand
 import ms2709.member.application.port.`in`.RegisterMembershipUseCase
 import ms2709.member.domain.Membership
-import ms2709.member.global.WebAdapter
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 /**
  *
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping
  */
 
 @WebAdapter
+@RestController
 @RequestMapping("/membership")
 class RegisterMembershipController(
     private val registerMembershipUseCase: RegisterMembershipUseCase

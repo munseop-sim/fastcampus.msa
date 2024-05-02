@@ -1,8 +1,9 @@
-package com.ms2709.global;
+package ms2709.global;
 
 
 import jakarta.validation.*;
 import java.util.Set;
+
 /**
  *  Command객체의 유효성 검증을 위한 추상 클래스
  *
@@ -15,7 +16,7 @@ public abstract class SelfValidating<T> {
 
     private Validator validator;
 
-    public SelfValidating() {
+    protected SelfValidating() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }

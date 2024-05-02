@@ -1,8 +1,8 @@
 package ms2709.member.adapter.out.persistence
 
+import ms2709.global.Mapper
 import ms2709.member.adapter.out.persistence.entity.MembershipJpaEntity
 import ms2709.member.domain.Membership
-import ms2709.member.global.Mapper
 import kotlin.reflect.KClass
 import kotlin.reflect.full.primaryConstructor
 

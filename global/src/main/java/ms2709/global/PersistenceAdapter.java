@@ -1,4 +1,4 @@
-package com.ms2709.global;
+package ms2709.global;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Component;

@@ -1,11 +1,12 @@
 package ms2709.member.application.service
 
+import ms2709.global.UseCase
 import ms2709.member.adapter.out.persistence.MembershipMapper
 import ms2709.member.application.port.`in`.RegisterMembershipCommand
 import ms2709.member.application.port.`in`.RegisterMembershipUseCase
 import ms2709.member.application.port.out.RegisterMembershipPort
 import ms2709.member.domain.Membership
-import ms2709.member.global.UseCase
+
 import org.springframework.transaction.annotation.Transactional
 
 /**

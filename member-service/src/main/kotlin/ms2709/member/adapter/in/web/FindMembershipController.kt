@@ -1,12 +1,13 @@
 package ms2709.member.adapter.`in`.web
 
+import ms2709.global.WebAdapter
 import ms2709.member.application.port.`in`.FindMembershipCommand
 import ms2709.member.application.port.`in`.FindMembershipUseCase
 import ms2709.member.domain.Membership
-import ms2709.member.global.WebAdapter
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 /**
  *
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping
  * @since 2024-04-29 10:39 PM
  */
 @WebAdapter
+@RestController
 @RequestMapping("/membership")
 class FindMembershipController(
     private val findMembershipUseCase: FindMembershipUseCase
