@@ -101,3 +101,11 @@ networks:
   - 여러 컨테이너로 구성된 복잡한 애플리케이션 환경을 관리해주는 도구
   - 주로 docker-compose.yaml 파일에 정의를 하고 네트워크, 볼류 등을 정의하여 한번에 여러 컨테이너 실행
   - 제한된 환경에서 MSA를 구축하고 스터디하기에 유용
+- docker관련 명령어
+```
+docker image ls : 도커이미지 목록
+dokcer image rm [Image Id or Name] [--force : 강제적으로 삭제하고싶을 때 사용] : 도커이미지 삭제
+docker-compose up -d : doceker-compose 실행
+docker-compose down : docker-compose 종료(컨테이너 삭제됨)
+
+```
