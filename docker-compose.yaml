@@ -1,0 +1,41 @@
+version: '3'
+services:
+    mysql:
+        image: mysql:8.0
+        networks:
+            - ms2709_pay_service_network
+        volumes:
+            - ./db/conf.d:/etc/mysql/conf.d
+            - ./db/data:/var/lib/mysql
+            - ./db/initdb.d:/docker-entrypoint-initdb.d
+        env_file: .env
+        ports:
+            - "3306:3306"
+        environment:
+            - TZ=Asia/Seoul
+            - MYSQL_ROOT_PASSWORD=rootpassword
+            - MYSQL_USER=mysqluser
+            - MYSQL_PASSWORD=mysqlpw
+
+    membership-service:
+        image: ms2709.pay-service.member-service:0.0.1
+        networks:
+            - ms2709_pay_service_network
+        ports:
+            - "8081:8080"
+        depends_on:
+            - mysql
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/ms2709_pay?useSSL=false&allowPublicKeyRetrieval=true
+            - SPRING_DATASOURCE_USERNAME=mysqluser
+            - SPRING_DATASOURCE_PASSWORD=mysqlpw
+            - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
+            - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+            - SPRINGDOC_SWAGGER_UI_PATH=/swagger-ui.html
+            - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK=INFO
+            - LOGGING_LEVEL_ORG_HIBERNATE_SQL=DEBUG
+            - LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL_BASICBINDER=TRACE
+
+networks:
+    ms2709_pay_service_network:
+        driver: bridge
