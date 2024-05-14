@@ -1,7 +1,5 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.2.5'
-    id 'io.spring.dependency-management' version '1.1.4'
     id 'com.palantir.docker' version '0.36.0'
 }
 
@@ -46,16 +44,18 @@ tasks.named('test') {
 
 //
 //
-//docker{
-//    println(tasks.bootJar.get().outputs.files)
-////    이미지 이름
-//    name=rootProject.name+"."+project.name + ":" + version
-////  도커파일 경로
-//    setDockerfile(file("../Dockerfile"))
-////  어떤 파일들을 Dockerfile로 복사할지 결정
-//    this.files(tasks.bootJar.get().outputs.files)
-////   빌드할 때 사용할 인자를 설정
-//    buildArgs(mapOf("JAR_FILE" to tasks.bootJar.get().outputs.files.singleFile.name))
-//}
+docker{
+    println(tasks.bootJar.outputs.files)
+//    이미지 이름
+    name rootProject.name+"."+project.name + ":" + version
+//  도커파일 경로
+    dockerfile file("../Dockerfile")
+//  어떤 파일들을 Dockerfile로 복사할지 결정
+    files tasks.bootJar.outputs.files
+//   빌드할 때 사용할 인자를 설정
+    buildArgs([
+            JAR_FILE: tasks.bootJar.outputs.files.singleFile.name
+    ])
+}
 
-tasks.register("prepareKotlinBuildScriptModel"){}
+//tasks.register("prepareKotlinBuildScriptModel"){}

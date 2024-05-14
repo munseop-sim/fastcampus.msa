@@ -34,7 +34,24 @@ services:
             - SPRINGDOC_SWAGGER_UI_PATH=/swagger-ui.html
             - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK=INFO
             - LOGGING_LEVEL_ORG_HIBERNATE_SQL=DEBUG
-            - LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL_BASICBINDER=TRACE
+
+    banking-service:
+        image: ms2709.pay-service.banking-service:0.0.1
+        networks:
+            - ms2709_pay_service_network
+        ports:
+            - "8082:8080"
+        depends_on:
+            - mysql
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/ms2709_pay?useSSL=false&allowPublicKeyRetrieval=true
+            - SPRING_DATASOURCE_USERNAME=mysqluser
+            - SPRING_DATASOURCE_PASSWORD=mysqlpw
+            - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
+            - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+            - SPRINGDOC_SWAGGER_UI_PATH=/swagger-ui.html
+            - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK=INFO
+            - LOGGING_LEVEL_ORG_HIBERNATE_SQL=DEBUG
 
 networks:
     ms2709_pay_service_network:

@@ -1,5 +1,7 @@
 plugins {
     id("java")
+    id("org.springframework.boot") version "3.2.5"
+    id("io.spring.dependency-management") version "1.1.4"
 }
 
 group = "ms2709.pay-service"
@@ -18,3 +20,13 @@ tasks.test {
     useJUnitPlatform()
 }
 
+
+subprojects{
+    apply(plugin = "java")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
+
+    apply {
+        tasks.register("prepareKotlinBuildScriptModel"){}
+    }
+}
