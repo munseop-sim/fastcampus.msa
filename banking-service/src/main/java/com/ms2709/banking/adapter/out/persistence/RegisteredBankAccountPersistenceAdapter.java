@@ -2,6 +2,8 @@ package com.ms2709.banking.adapter.out.persistence;
 
 import com.ms2709.banking.adapter.out.persistence.entity.RegisteredBankAccountJpaEntity;
 import com.ms2709.banking.adapter.out.persistence.repository.RegisteredBankAccountJpaEntityRepository;
+import com.ms2709.banking.application.port.in.FindBankAccountCommand;
+import com.ms2709.banking.application.port.out.FindBankAccountPort;
 import com.ms2709.banking.application.port.out.RegisterBankAccountPort;
 import com.ms2709.banking.domain.RegisteredBankAccount;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +19,7 @@ import ms2709.global.PersistenceAdapter;
  */
 @RequiredArgsConstructor
 @PersistenceAdapter
-public class RegisteredBankAccountPersistenceAdapter implements RegisterBankAccountPort {
+public class RegisteredBankAccountPersistenceAdapter implements RegisterBankAccountPort, FindBankAccountPort {
     private final RegisteredBankAccountJpaEntityRepository bankAccountRepository;
     @Override
     public RegisteredBankAccountJpaEntity createRegisteredBankAccount(RegisteredBankAccount.MembershipId membershipId, RegisteredBankAccount.BankName bankName, RegisteredBankAccount.BankAccountNumber bankAccountNumber, RegisteredBankAccount.LinkedStatusIsValid linkedStatusIsValid) {
@@ -29,5 +31,14 @@ public class RegisteredBankAccountPersistenceAdapter implements RegisterBankAcco
                         linkedStatusIsValid.value()
                 )
         );
+    }
+
+
+    @Override
+    public RegisteredBankAccountJpaEntity findBankAccount(FindBankAccountCommand findBankAccountCommand) {
+        var accountId = findBankAccountCommand.getRegisteredBankAccountId();
+        var entity =bankAccountRepository.findById(accountId).orElse(null);
+        if(entity == null) throw new RuntimeException("Bank account not found");
+        return entity;
     }
 }

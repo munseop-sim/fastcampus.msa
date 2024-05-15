@@ -3,8 +3,11 @@ package com.ms2709.banking.application.service;
 import com.ms2709.banking.adapter.out.external.bank.BankAccount;
 import com.ms2709.banking.adapter.out.external.bank.GetBankAccountRequest;
 import com.ms2709.banking.adapter.out.persistence.RegisteredBankAccountMapper;
+import com.ms2709.banking.application.port.in.FindBankAccountCommand;
+import com.ms2709.banking.application.port.in.FindBankAccountUseCase;
 import com.ms2709.banking.application.port.in.RegisterBankAccountCommand;
 import com.ms2709.banking.application.port.in.RegisterBankAccountUseCase;
+import com.ms2709.banking.application.port.out.FindBankAccountPort;
 import com.ms2709.banking.application.port.out.RegisterBankAccountPort;
 import com.ms2709.banking.application.port.out.RequestBankAccountInfoPort;
 import com.ms2709.banking.domain.RegisteredBankAccount;
@@ -24,13 +27,16 @@ import ms2709.global.UseCase;
 @UseCase
 @RequiredArgsConstructor
 @Transactional
-public class RegisterBankAccountService implements RegisterBankAccountUseCase {
+public class RegisterBankAccountService implements RegisterBankAccountUseCase, FindBankAccountUseCase {
 
     private final RegisterBankAccountPort registerBankAccountPort;
+    private final FindBankAccountPort findBankAccountPort;
     private final RequestBankAccountInfoPort requestBankAccountIntoPort;
     private final RegisteredBankAccountMapper registeredBankAccountMapper;
     @Override
     public RegisteredBankAccount registerBankAccount(RegisterBankAccountCommand command) {
+        //todo - 중복등록 체크 로직 추가 -> 중복이면 throw exception
+
         BankAccount bankAccount = requestBankAccountIntoPort.getBankAccountInfo(
             new GetBankAccountRequest(command.getBankName(), command.getBankAccountNumber())
         );
@@ -48,5 +54,11 @@ public class RegisterBankAccountService implements RegisterBankAccountUseCase {
             return null;
         }
 
+    }
+
+    @Override
+    public RegisteredBankAccount findBankAccount(FindBankAccountCommand command) {
+        var entity = findBankAccountPort.findBankAccount(command);
+        return registeredBankAccountMapper.mapToDomainEntity(entity);
     }
 }

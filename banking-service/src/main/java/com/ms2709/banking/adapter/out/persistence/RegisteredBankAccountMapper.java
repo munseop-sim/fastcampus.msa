@@ -2,6 +2,7 @@ package com.ms2709.banking.adapter.out.persistence;
 
 import com.ms2709.banking.adapter.out.persistence.entity.RegisteredBankAccountJpaEntity;
 import com.ms2709.banking.domain.RegisteredBankAccount;
+import ms2709.global.Mapper;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @class RegisteredBankAccountMapper
  * @since 2024-05-13 오후 10:15
  */
-@Component
+@Mapper
 public class RegisteredBankAccountMapper {
     public RegisteredBankAccount mapToDomainEntity(RegisteredBankAccountJpaEntity jpaEntity) {
         return RegisteredBankAccount.create(

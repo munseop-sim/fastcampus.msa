@@ -1,6 +1,7 @@
 package com.ms2709.banking.adapter.out.external.bank;
 
 import com.ms2709.banking.application.port.out.RequestBankAccountInfoPort;
+import com.ms2709.banking.application.port.out.RequestExternalFirmbankingPort;
 import lombok.RequiredArgsConstructor;
 import ms2709.global.ExternalSystemAdapter;
 
@@ -14,7 +15,7 @@ import ms2709.global.ExternalSystemAdapter;
  */
 @ExternalSystemAdapter
 @RequiredArgsConstructor
-public class BankAccountAdapter implements RequestBankAccountInfoPort {
+public class BankAccountAdapter implements RequestBankAccountInfoPort, RequestExternalFirmbankingPort {
 
     @Override
     public BankAccount getBankAccountInfo(GetBankAccountRequest request) {
@@ -23,5 +24,12 @@ public class BankAccountAdapter implements RequestBankAccountInfoPort {
         //
         //실제은행 계좌 -> BankAccount
         return new BankAccount(request.getBankName(), request.getBankAccountNumber(), true);
+    }
+
+    @Override
+    public FirmbankingResult requestExternalFirmbanking(ExternalFirmbankingRequest firmbankingRequest) {
+        // 실제로 외부 은행에 http를 통해서 펌뱅킹 요청을 수행하고 그 결과를 받아오는 로직이 들어갈 것이다.
+        // 펌뱅킹 요청결과를 FirmbankingResult으로 파싱해서 리턴한다.
+        return new FirmbankingResult(0);
     }
 }
