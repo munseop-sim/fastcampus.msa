@@ -23,7 +23,6 @@ public class MoneyChangingRequestJpaEntity {
 
     private int moneyAmount;
 
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate timestamp;
 
     private int changingMoneyStatus; // 0: 요청, 1: 성공, 2: 실패

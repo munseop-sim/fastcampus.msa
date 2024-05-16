@@ -25,4 +25,9 @@ public class MemberMoneyJpaEntity {
         this.membershipId = membershipId;
         this.balance = balance;
     }
+
+    public Integer increaseMoney(int increaseMoneyAmount) {
+        this.balance += increaseMoneyAmount;
+        return this.balance;
+    }
 }

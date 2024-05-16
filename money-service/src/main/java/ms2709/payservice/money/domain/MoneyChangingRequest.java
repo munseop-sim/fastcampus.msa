@@ -38,7 +38,7 @@ public class MoneyChangingRequest {
             ChangingType changingType,
             ChangingMoneyStatus changingMoneyStatus,
             ChangingMoneyAmount changingMoneyAmount,
-            String uuid
+            Uuid uuid
     ) {
         return new MoneyChangingRequest(
                 moneyChangingRequestId.value,
@@ -46,7 +46,7 @@ public class MoneyChangingRequest {
                 changingType.value,
                 changingMoneyStatus.value,
                 changingMoneyAmount.value,
-                uuid,
+                uuid.value,
                 LocalDate.now()
         );
     }
@@ -65,6 +65,7 @@ public class MoneyChangingRequest {
             this(MoneyChangingRequestStatusTypes.values()[value]);
         }
     }
+    public record Uuid(String value){}
 
 
 }

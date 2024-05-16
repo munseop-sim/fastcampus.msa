@@ -11,4 +11,13 @@ public enum MoneyChangingTypes {
     MoneyChangingTypes(int changingTypeIndex) {
         this.changingTypeIndex = changingTypeIndex;
     }
+
+    public static MoneyChangingTypes from(int changingTypeIndex) {
+        for (MoneyChangingTypes type : MoneyChangingTypes.values()) {
+            if (type.changingTypeIndex.equals(changingTypeIndex)) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("Unknown MoneyChangingType index: " + changingTypeIndex);
+    }
 }
