@@ -34,6 +34,8 @@ services:
             - SPRINGDOC_SWAGGER_UI_PATH=/swagger-ui.html
             - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK=INFO
             - LOGGING_LEVEL_ORG_HIBERNATE_SQL=DEBUG
+            - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
+            - LOGGING_TOPIC=payservice.logging.out.stdout
 
     banking-service:
         image: ms2709.pay-service.banking-service:0.0.2
@@ -52,7 +54,85 @@ services:
             - SPRINGDOC_SWAGGER_UI_PATH=/swagger-ui.html
             - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK=INFO
             - LOGGING_LEVEL_ORG_HIBERNATE_SQL=DEBUG
+            - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
+            - LOGGING_TOPIC=payservice.logging.out.stdout
 
+    money-service:
+        image: ms2709.pay-service.money-service:0.0.1
+        networks:
+            - ms2709_pay_service_network
+        ports:
+            - "8083:8080"
+        depends_on:
+            - mysql
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/ms2709_pay?useSSL=false&allowPublicKeyRetrieval=true
+            - SPRING_DATASOURCE_USERNAME=mysqluser
+            - SPRING_DATASOURCE_PASSWORD=mysqlpw
+            - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
+            - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+            - SPRINGDOC_SWAGGER_UI_PATH=/swagger-ui.html
+            - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK=INFO
+            - LOGGING_LEVEL_ORG_HIBERNATE_SQL=DEBUG
+            - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
+            - LOGGING_TOPIC=payservice.logging.out.stdout
+
+    logging-consumer:
+        image: ms2709.pay-service.logging-consumer:0.0.1
+        networks:
+            - ms2709_pay_service_network
+        restart: always
+        depends_on:
+            - kafka
+            - zookeeper
+        environment:
+            - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
+            - LOGGING_TOPIC=payservice.logging.out.stdout
+
+    zookeeper:
+        image: confluentinc/cp-zookeeper:latest
+        networks:
+            - ms2709_pay_service_network
+        ports:
+            - '2181:2181'
+        environment:
+            - ALLOW_ANONYMOUS_LOGIN=yes
+            - ZOO_TLS_CLIENT_AUTH=none
+            - ZOO_TLS_QUORUM_CLIENT_AUTH=none
+            - ZOOKEEPER_CLIENT_PORT=2181
+
+    kafka:
+        image: confluentinc/cp-kafka:latest
+        networks:
+            - ms2709_pay_service_network
+        ports:
+            - '9092:9092'
+        environment:
+            - KAFKA_BROKER_ID=1
+            - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+            - ALLOW_PLAINTEXT_LISTENER=yes
+            - KAFKA_LISTENERS=LC://kafka:29092,LX://kafka:9092
+            - KAFKA_ADVERTISED_LISTENERS=LC://kafka:29092,LX://${DOCKER_HOST_IP:-localhost}:9092
+            - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=LC:PLAINTEXT,LX:PLAINTEXT
+            - KAFKA_INTER_BROKER_LISTENER_NAME=LC
+        depends_on:
+            - zookeeper
+#
+    kafka-ui:
+        image: provectuslabs/kafka-ui
+        container_name: kafka-ui
+        networks:
+            - ms2709_pay_service_network
+        ports:
+            - "8989:8080"
+        restart: always
+        depends_on:
+            - kafka
+            - zookeeper
+        environment:
+            - KAFKA_CLUSTERS_0_NAME=local
+            - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:29092
+            - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
 networks:
     ms2709_pay_service_network:
         driver: bridge
