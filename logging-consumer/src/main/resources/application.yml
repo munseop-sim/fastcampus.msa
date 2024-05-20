@@ -1,0 +1,5 @@
+#spring.application.name=logging-consumer
+#
+#
+#kafka.clusters.bootstrapservers=123
+#logging.topic=123
