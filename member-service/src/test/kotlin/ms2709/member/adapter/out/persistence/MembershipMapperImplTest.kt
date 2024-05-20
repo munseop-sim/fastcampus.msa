@@ -1,6 +1,7 @@
-package ms2709.member.adapter.out.persistence
+package ms2709.payservice.member.adapter.out.persistence
 
-import ms2709.member.adapter.out.persistence.entity.MembershipJpaEntity
+import ms2709.payservice.member.adapter.out.persistence.MembershipMapper
+import ms2709.payservice.member.adapter.out.persistence.entity.MembershipJpaEntity
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -18,7 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest
  */
 @SpringBootTest
 class MembershipMapperImplTest @Autowired constructor(
-    private val sut:MembershipMapper
+    private val sut: MembershipMapper
 ){
     @DisplayName("MembershipJpaEntity -> DomainEntity 매핑 테스트")
     @Test

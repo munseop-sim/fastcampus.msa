@@ -1,20 +1,17 @@
 package ms2709.member.adapter.`in`.web
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import ms2709.member.domain.Membership
-import org.junit.jupiter.api.Assertions.*
+import ms2709.payservice.member.adapter.`in`.web.RegisterMembershipRequest
+import ms2709.payservice.member.domain.Membership
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
-import org.springframework.mock.http.server.reactive.MockServerHttpRequest.post
-import org.springframework.test.web.client.match.MockRestRequestMatchers.content
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 /**
  * @class RegisterMembershipControllerTest

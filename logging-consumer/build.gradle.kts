@@ -7,7 +7,7 @@ plugins {
     kotlin("plugin.jpa") version "1.9.23"
 }
 
-group = "ms2709.pay-service.member"
+group = "ms2709.pay-service.logging"
 version = "0.0.1"
 
 java {
@@ -19,17 +19,19 @@ repositories {
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
-    implementation("org.springframework.boot:spring-boot-starter-jdbc")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
+    implementation("org.springframework.kafka:spring-kafka")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
     runtimeOnly("com.h2database:h2")
     runtimeOnly("mysql:mysql-connector-java:8.0.33")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
     testRuntimeOnly("com.h2database:h2")
     implementation(project(":global"))
 }
@@ -45,7 +47,6 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-//tasks.register("prepareKotlinBuildScriptModel"){}
 
 docker{
     println(tasks.bootJar.get().outputs.files)

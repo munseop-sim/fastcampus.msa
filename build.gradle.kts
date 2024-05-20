@@ -12,6 +12,8 @@ repositories {
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("org.springframework.kafka:spring-kafka")
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
@@ -27,6 +29,9 @@ subprojects{
     apply(plugin = "io.spring.dependency-management")
 
     apply {
+    }
+    apply {
+
         tasks.register("prepareKotlinBuildScriptModel"){}
     }
 }

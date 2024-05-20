@@ -1,0 +1,7 @@
+#spring.application.name=logging-consumer
+#
+#
+kafka:
+  clusters:
+    bootstrapservers: 'http://localhost:9092'
+logging.topic: 'payservice.logging.out.stdout'
