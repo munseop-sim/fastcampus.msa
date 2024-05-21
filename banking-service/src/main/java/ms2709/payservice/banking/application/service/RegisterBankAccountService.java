@@ -7,9 +7,7 @@ import ms2709.payservice.banking.application.port.in.FindBankAccountCommand;
 import ms2709.payservice.banking.application.port.in.FindBankAccountUseCase;
 import ms2709.payservice.banking.application.port.in.RegisterBankAccountCommand;
 import ms2709.payservice.banking.application.port.in.RegisterBankAccountUseCase;
-import ms2709.payservice.banking.application.port.out.FindBankAccountPort;
-import ms2709.payservice.banking.application.port.out.RegisterBankAccountPort;
-import ms2709.payservice.banking.application.port.out.RequestBankAccountInfoPort;
+import ms2709.payservice.banking.application.port.out.*;
 import ms2709.payservice.banking.domain.RegisteredBankAccount;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -29,12 +27,19 @@ import ms2709.global.UseCase;
 @Transactional
 public class RegisterBankAccountService implements RegisterBankAccountUseCase, FindBankAccountUseCase {
 
+    private final GetMembershipPort getMembershipPort;
     private final RegisterBankAccountPort registerBankAccountPort;
     private final FindBankAccountPort findBankAccountPort;
     private final RequestBankAccountInfoPort requestBankAccountIntoPort;
     private final RegisteredBankAccountMapper registeredBankAccountMapper;
     @Override
     public RegisteredBankAccount registerBankAccount(RegisterBankAccountCommand command) {
+
+        MembershipStatus membershipStatus = getMembershipPort.getMembershipStatus(command.getMembershipId());
+        if(!membershipStatus.isValid()){
+            return null;
+        }
+
         //todo - 중복등록 체크 로직 추가 -> 중복이면 throw exception
 
         BankAccount bankAccount = requestBankAccountIntoPort.getBankAccountInfo(

@@ -1,0 +1,3 @@
+task:
+    topic: "payservice.task.topic"
+    result.topic: "payservice.task.result.topic"

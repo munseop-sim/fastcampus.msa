@@ -42,4 +42,24 @@ public class RequestMoneyChangingController {
                 moneyChangingRequest.getChangingMoneyAmount());
         return resultDetail;
     }
+
+    @PostMapping(path = "/money/increase/async")
+    MoneyChangingResultDetail increaseMoneyChangingRequestAsync(@RequestBody IncreaseMoneyChangingRequest request) {
+        IncreaseMoneyRequestCommand command = IncreaseMoneyRequestCommand.builder()
+                .targetMembershipId(request.getTargetMembershipId())
+                .amount(request.getAmount())
+                .build();
+
+        MoneyChangingRequest moneyChangingRequest = increaseMoneyRequestUseCase.increaseMoneyRequestAsync(command);
+
+        // MoneyChangingRequest -> MoneyChangingResultDetail
+        MoneyChangingResultDetail resultDetail = new MoneyChangingResultDetail(
+                moneyChangingRequest.getMoneyChangingRequestId(),
+                moneyChangingRequest.getChangingType(),
+                moneyChangingRequest.getChangingMoneyStatus(),
+                moneyChangingRequest.getChangingMoneyAmount());
+        return resultDetail;
+    }
+
+
 }

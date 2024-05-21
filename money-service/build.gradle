@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'ms2709.pay-service.money'
-version = '0.0.1'
+version = '0.0.2'
 
 
 java {
@@ -30,7 +30,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-
+    implementation "org.springframework.kafka:spring-kafka"
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java:8.0.33'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

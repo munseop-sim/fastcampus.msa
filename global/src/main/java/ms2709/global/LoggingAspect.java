@@ -24,7 +24,6 @@ public class LoggingAspect {
 
     @Before("execution(* ms2709.payservice.*.adapter.in.web.*.*(..))")
     public void beforeMethodExecution(JoinPoint joinPoint) {
-        System.out.println("hello");
         String methodName = joinPoint.getSignature().getName();
 
         loggingProducer.sendMessage("logging", "Before executing method: " + methodName);

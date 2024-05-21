@@ -1,5 +1,6 @@
 package ms2709.payservice.banking.adapter.in.web;
 
+import lombok.extern.slf4j.Slf4j;
 import ms2709.payservice.banking.application.port.in.RegisterBankAccountCommand;
 import ms2709.payservice.banking.application.port.in.RegisterBankAccountUseCase;
 import ms2709.payservice.banking.domain.RegisteredBankAccount;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @WebAdapter
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 @RequestMapping("/banking")
 public class RegisterBankAccountController {
 
@@ -36,7 +38,7 @@ public class RegisterBankAccountController {
                 .build();
         var saved = registerBankAccountUseCase.registerBankAccount(command);
         if(saved == null){
-            // todo - error handling
+            log.error("Failed to register bank account. membershipId: {}", request.getMembershipId());
             return null;
         }
 

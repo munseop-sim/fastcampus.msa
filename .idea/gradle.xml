@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/logging-consumer" />
             <option value="$PROJECT_DIR$/member-service" />
             <option value="$PROJECT_DIR$/money-service" />
+            <option value="$PROJECT_DIR$/task-consumer" />
           </set>
         </option>
       </GradleProjectSettings>
@@ -26,6 +27,29 @@
             <option value="$PROJECT_DIR$/logging-consumer" />
             <option value="$PROJECT_DIR$/member-service" />
             <option value="$PROJECT_DIR$/money-service" />
+            <option value="$PROJECT_DIR$/task-consumer" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/ms2709.pay-service.taskconsumer" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/ms2709.pay-service.taskconsumer" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/task-consumer" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/banking-service" />
+            <option value="$PROJECT_DIR$/global" />
+            <option value="$PROJECT_DIR$/logging-consumer" />
+            <option value="$PROJECT_DIR$/member-service" />
+            <option value="$PROJECT_DIR$/money-service" />
+            <option value="$PROJECT_DIR$/task-consumer" />
           </set>
         </option>
       </GradleProjectSettings>

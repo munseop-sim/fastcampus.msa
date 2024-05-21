@@ -35,6 +35,7 @@ services:
             - LOGGING_LEVEL_ORG_HIBERNATE_SQL=DEBUG
             - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
             - LOGGING_TOPIC=payservice.logging.out.stdout
+            - TASK_TOPIC=payservice.task.topic
 
     banking-service:
         image: ms2709.pay-service.banking-service:0.0.2
@@ -55,9 +56,12 @@ services:
             - LOGGING_LEVEL_ORG_HIBERNATE_SQL=DEBUG
             - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
             - LOGGING_TOPIC=payservice.logging.out.stdout
+            - MEMBERSHIP_SERVICE_URL=http://membership-service:8080
+            - TASK_TOPIC=payservice.task.topic
+
 
     money-service:
-        image: ms2709.pay-service.money-service:0.0.1
+        image: ms2709.pay-service.money-service:0.0.2
         networks:
             - ms2709_pay_service_network
         ports:
@@ -75,6 +79,9 @@ services:
             - LOGGING_LEVEL_ORG_HIBERNATE_SQL=DEBUG
             - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
             - LOGGING_TOPIC=payservice.logging.out.stdout
+            - TASK_TOPIC=payservice.task.topic
+            - TASK_RESULT_TOPIC=payservice.task.result.topic
+            - SERVICE_MEMBERSHIP_URL=http://membership-service:8080
 
     logging-consumer:
         image: ms2709.pay-service.logging-consumer:0.0.1
@@ -87,6 +94,20 @@ services:
         environment:
             - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
             - LOGGING_TOPIC=payservice.logging.out.stdout
+
+    task-consumer:
+        image: ms2709.pay-service.task-consumer:0.0.1
+        networks:
+            - ms2709_pay_service_network
+        restart: always
+        depends_on:
+            - kafka
+            - zookeeper
+        environment:
+            - KAFKA_CLUSTERS_BOOTSTRAPSERVERS=kafka:29092
+            - LOGGING_TOPIC=payservice.logging.out.stdout
+            - TASK_TOPIC=payservice.task.topic
+            - TASK_RESULT_TOPIC=payservice.task.result.topic
 
     zookeeper:
         image: bitnami/zookeeper:latest
