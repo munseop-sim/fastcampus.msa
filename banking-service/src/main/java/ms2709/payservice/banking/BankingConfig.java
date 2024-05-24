@@ -1,4 +1,4 @@
-package ms2709.payservice.banking.adapter;
+package ms2709.payservice.banking;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
