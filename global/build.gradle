@@ -9,6 +9,11 @@ java {
     sourceCompatibility = '17'
 }
 
+ext{
+    axonVersion = "4.9.3"
+}
+
+
 repositories {
     mavenCentral()
 }
@@ -22,6 +27,9 @@ dependencies {
 
     compileOnly "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"
+
+    implementation group: 'org.axonframework', name: 'axon-configuration', version: "$axonVersion"
+    implementation group: 'org.axonframework', name: 'axon-spring-boot-starter', version: "$axonVersion"
 }
 
 tasks.named('test') {

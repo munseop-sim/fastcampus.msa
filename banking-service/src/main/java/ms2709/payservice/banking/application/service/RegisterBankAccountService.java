@@ -1,17 +1,16 @@
 package ms2709.payservice.banking.application.service;
 
+import ms2709.payservice.banking.adapter.axon.command.CreateRegisteredBankAccountCommand;
 import ms2709.payservice.banking.adapter.out.external.bank.BankAccount;
 import ms2709.payservice.banking.adapter.out.external.bank.GetBankAccountRequest;
 import ms2709.payservice.banking.adapter.out.persistence.RegisteredBankAccountMapper;
-import ms2709.payservice.banking.application.port.in.FindBankAccountCommand;
-import ms2709.payservice.banking.application.port.in.FindBankAccountUseCase;
-import ms2709.payservice.banking.application.port.in.RegisterBankAccountCommand;
-import ms2709.payservice.banking.application.port.in.RegisterBankAccountUseCase;
+import ms2709.payservice.banking.application.port.in.*;
 import ms2709.payservice.banking.application.port.out.*;
 import ms2709.payservice.banking.domain.RegisteredBankAccount;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import ms2709.global.UseCase;
+import org.axonframework.commandhandling.gateway.CommandGateway;
 
 /**
  * 클래스 설명
@@ -25,13 +24,15 @@ import ms2709.global.UseCase;
 @UseCase
 @RequiredArgsConstructor
 @Transactional
-public class RegisterBankAccountService implements RegisterBankAccountUseCase, FindBankAccountUseCase {
+public class RegisterBankAccountService implements RegisterBankAccountUseCase, FindBankAccountUseCase, GetRegisteredBankAccountUseCase {
 
     private final GetMembershipPort getMembershipPort;
     private final RegisterBankAccountPort registerBankAccountPort;
     private final FindBankAccountPort findBankAccountPort;
     private final RequestBankAccountInfoPort requestBankAccountIntoPort;
     private final RegisteredBankAccountMapper registeredBankAccountMapper;
+    private final CommandGateway commandGateway;
+    private final GetRegisteredBankAccountPort getRegisteredBankAccountPort;
     @Override
     public RegisteredBankAccount registerBankAccount(RegisterBankAccountCommand command) {
 
@@ -52,7 +53,8 @@ public class RegisterBankAccountService implements RegisterBankAccountUseCase, F
                 new RegisteredBankAccount.MembershipId(command.getMembershipId()),
                 new RegisteredBankAccount.BankName(command.getBankName()),
                 new RegisteredBankAccount.BankAccountNumber(command.getBankAccountNumber()),
-                new RegisteredBankAccount.LinkedStatusIsValid(command.isValid())
+                new RegisteredBankAccount.LinkedStatusIsValid(command.isValid()),
+                new RegisteredBankAccount.AggregateIdentifier("")
             );
             return registeredBankAccountMapper.mapToDomainEntity(saved);
         }else{
@@ -62,8 +64,37 @@ public class RegisterBankAccountService implements RegisterBankAccountUseCase, F
     }
 
     @Override
+    public void registerBankAccountByEvent(RegisterBankAccountCommand command) {
+        commandGateway.send(new CreateRegisteredBankAccountCommand(
+                command.getMembershipId(),
+                command.getBankName(),
+                command.getBankAccountNumber())
+        ).whenComplete((result, throwable) -> {
+            if(throwable != null){
+                throwable.printStackTrace();
+            }else{
+                //정상적인 이벤트 소싱
+                registerBankAccountPort.createRegisteredBankAccount(
+                        new RegisteredBankAccount.MembershipId(command.getMembershipId()),
+                        new RegisteredBankAccount.BankName(command.getBankName()),
+                        new RegisteredBankAccount.BankAccountNumber(command.getBankAccountNumber()),
+                        new RegisteredBankAccount.LinkedStatusIsValid(command.isValid()),
+                        new RegisteredBankAccount.AggregateIdentifier(result.toString())
+                );
+            }
+        });
+
+    }
+
+    @Override
     public RegisteredBankAccount findBankAccount(FindBankAccountCommand command) {
         var entity = findBankAccountPort.findBankAccount(command);
+        return registeredBankAccountMapper.mapToDomainEntity(entity);
+    }
+
+    @Override
+    public RegisteredBankAccount getRegisteredBankAccount(GetRegisteredBankAccountCommand command) {
+        var entity = getRegisteredBankAccountPort.getRegisteredBankAccount(command);
         return registeredBankAccountMapper.mapToDomainEntity(entity);
     }
 }

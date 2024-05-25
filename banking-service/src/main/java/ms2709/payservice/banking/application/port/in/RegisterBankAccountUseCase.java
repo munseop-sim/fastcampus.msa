@@ -12,4 +12,5 @@ import ms2709.payservice.banking.domain.RegisteredBankAccount;
  */
 public interface RegisterBankAccountUseCase {
     RegisteredBankAccount registerBankAccount(RegisterBankAccountCommand command);
+    void registerBankAccountByEvent(RegisterBankAccountCommand command);
 }

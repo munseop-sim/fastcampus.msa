@@ -20,7 +20,8 @@ public class RegisteredBankAccountMapper {
                 new RegisteredBankAccount.MembershipId(jpaEntity.getMembershipId()+""),
                 new RegisteredBankAccount.BankName(jpaEntity.getBankName()),
                 new RegisteredBankAccount.BankAccountNumber(jpaEntity.getBankAccountNumber()),
-                new RegisteredBankAccount.LinkedStatusIsValid(jpaEntity.isLinkedStatusIsValid())
+                new RegisteredBankAccount.LinkedStatusIsValid(jpaEntity.isLinkedStatusIsValid()),
+                new RegisteredBankAccount.AggregateIdentifier(jpaEntity.getAggregateIdentifier())
         );
     }
 }
