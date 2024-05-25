@@ -6,9 +6,5 @@
 - "충전" Saga정의, Pattern 적용, Test, Monitoring
 
 
-## `money-service`의 EDA refactoring
-1. Axon Server Setup
-2. Dependency for AxonFramework. Connect to Axon Server(MoneyService)
-3. Axon Adapter 패키지 생성, EventSourcing기반, MoneyService Refactoring
-4. Axon Server Admin에서 EventSourcing 확인
+
 

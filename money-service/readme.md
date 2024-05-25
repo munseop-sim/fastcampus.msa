@@ -12,4 +12,11 @@
       - 고객의 머니(잔액, 계좌연동정보) 조회
   - Command
       - 고객의 머니 증액(충전) 요청
-      - 고객의 머니 감액(송금 등..) 요청 
+      - 고객의 머니 감액(송금 등..) 요청
+
+
+## EDA refactoring
+1. Axon Server Setup
+2. Dependency for AxonFramework. Connect to Axon Server(MoneyService)
+3. Axon Adapter 패키지 생성, EventSourcing기반, MoneyService Refactoring
+4. Axon Server Admin에서 EventSourcing 확인

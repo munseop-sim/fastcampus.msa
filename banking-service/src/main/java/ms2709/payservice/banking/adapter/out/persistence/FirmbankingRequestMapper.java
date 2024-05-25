@@ -16,7 +16,7 @@ import java.util.UUID;
  */
 @Mapper
 public class FirmbankingRequestMapper {
-    public FirmbankingRequest mapToDomainEntity(FirmbankingRequestJpaEntity entity, UUID uuid){
+    public FirmbankingRequest mapToDomainEntity(FirmbankingRequestJpaEntity entity, UUID uuid,String aggregateIdentifier){
         return FirmbankingRequest.create(
                 new FirmbankingRequest.FirmbankingRequestId(entity.getRequestFirmbankingId() + ""),
                 new FirmbankingRequest.FromBankName(entity.getFromBankName()),
@@ -25,7 +25,8 @@ public class FirmbankingRequestMapper {
                 new FirmbankingRequest.ToBankAccountNumber(entity.getToBankAccountNumber()),
                 new FirmbankingRequest.MoneyAmount(entity.getMoneyAmount()),
                 new FirmbankingRequest.FirmBankingStatus(entity.getFirmBankingStatus()),
-                uuid
+                uuid,
+                new FirmbankingRequest.FirmbankingAggregateIdentifier(aggregateIdentifier)
         );
     }
 }

@@ -22,3 +22,10 @@
   - Command
       - 고객 정보에 대해 요청된 Account정보를 매핑, 연동
       - 실제 실물계좌에서의 입/출금을 요청하는 펌뱅킹 요청, 수행
+
+
+## EDA refactoring
+1. Axon Server Setup
+2. Dependency for AxonFramework. Connect to Axon Server(BankingService)
+3. Axon Adapter 패키지 생성, EventSourcing기반, Banking-Service Refactoring
+4. Axon Server Admin에서 EventSourcing 확인

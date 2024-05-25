@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
  *
  * @author 심문섭
  * @version 1.0
- * @class RequestFirmbankingJpaEntity
  * @since 2024-05-15 오전 11:37
  */
 @Entity
@@ -40,8 +39,9 @@ public class FirmbankingRequestJpaEntity {
     private Integer firmBankingStatus; // 0: 요청, 1: 완료, 2: 실패
 
     private String uuid;
+    private String aggregateIdentifier;
 
-    public FirmbankingRequestJpaEntity(String fromBankName, String fromBankAccountNumber, String toBankName, String toBankAccountNumber, Integer moneyAmount, Integer firmBankingStatus, String uuid) {
+    public FirmbankingRequestJpaEntity(String fromBankName, String fromBankAccountNumber, String toBankName, String toBankAccountNumber, Integer moneyAmount, Integer firmBankingStatus, String uuid, String aggregateIdentifier) {
         this.fromBankName = fromBankName;
         this.fromBankAccountNumber = fromBankAccountNumber;
         this.toBankName = toBankName;
@@ -49,11 +49,12 @@ public class FirmbankingRequestJpaEntity {
         this.moneyAmount = moneyAmount;
         this.firmBankingStatus = firmBankingStatus;
         this.uuid = uuid;
+        this.aggregateIdentifier = aggregateIdentifier;
     }
 
     @Override
     public String toString() {
-        return "RequestFirmbankingJpaEntity{" +
+        return "FirmbankingRequestJpaEntity{" +
                 "requestFirmbankingId=" + requestFirmbankingId +
                 ", fromBankName='" + fromBankName + '\'' +
                 ", fromBankAccountNumber='" + fromBankAccountNumber + '\'' +
@@ -62,6 +63,8 @@ public class FirmbankingRequestJpaEntity {
                 ", moneyAmount=" + moneyAmount +
                 ", firmBankingStatus=" + firmBankingStatus +
                 ", uuid='" + uuid + '\'' +
+                ", aggregateIdentifier='" + aggregateIdentifier + '\'' +
                 '}';
     }
 }
+

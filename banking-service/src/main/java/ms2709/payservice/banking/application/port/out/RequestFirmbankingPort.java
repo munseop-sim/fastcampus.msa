@@ -18,7 +18,12 @@ public interface RequestFirmbankingPort {
             FirmbankingRequest.ToBankName toBankName,
             FirmbankingRequest.ToBankAccountNumber toBankAccountNumber,
             FirmbankingRequest.MoneyAmount moneyAmount,
-            FirmbankingRequest.FirmBankingStatus firmBankingStatus);
+            FirmbankingRequest.FirmBankingStatus firmBankingStatus,
+            FirmbankingRequest.FirmbankingAggregateIdentifier aggregateIdentifier);
 
     FirmbankingRequestJpaEntity modifyFirmbankingRequest(FirmbankingRequestJpaEntity firmbankingRequestJpaEntity);
+
+    FirmbankingRequestJpaEntity getFirmbankingRequest(
+            FirmbankingRequest.FirmbankingAggregateIdentifier firmbankingAggregateIdentifier
+    );
 }

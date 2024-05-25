@@ -8,6 +8,7 @@ import ms2709.payservice.banking.domain.FirmbankingRequest;
 import lombok.RequiredArgsConstructor;
 import ms2709.global.PersistenceAdapter;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -25,7 +26,7 @@ public class FirmbankingRequestPersistenceAdapter implements RequestFirmbankingP
     private final FirmbankingRequestJpaEntityRepository repository;
 
     @Override
-    public FirmbankingRequestJpaEntity createFirmbankingRequest(FirmbankingRequest.FromBankName fromBankName, FirmbankingRequest.FromBankAccountNumber fromBankAccountNumber, FirmbankingRequest.ToBankName toBankName, FirmbankingRequest.ToBankAccountNumber toBankAccountNumber, FirmbankingRequest.MoneyAmount moneyAmount, FirmbankingRequest.FirmBankingStatus firmBankingStatus) {
+    public FirmbankingRequestJpaEntity createFirmbankingRequest(FirmbankingRequest.FromBankName fromBankName, FirmbankingRequest.FromBankAccountNumber fromBankAccountNumber, FirmbankingRequest.ToBankName toBankName, FirmbankingRequest.ToBankAccountNumber toBankAccountNumber, FirmbankingRequest.MoneyAmount moneyAmount, FirmbankingRequest.FirmBankingStatus firmBankingStatus, FirmbankingRequest.FirmbankingAggregateIdentifier aggregateIdentifier) {
         return repository.save(
                 new FirmbankingRequestJpaEntity(
                         fromBankName.value(),
@@ -34,7 +35,8 @@ public class FirmbankingRequestPersistenceAdapter implements RequestFirmbankingP
                         toBankAccountNumber.value(),
                         moneyAmount.value(),
                         firmBankingStatus.value(),
-                        UUID.randomUUID().toString()
+                        UUID.randomUUID().toString(),
+                        aggregateIdentifier.value()
                 )
         );
     }
@@ -42,6 +44,15 @@ public class FirmbankingRequestPersistenceAdapter implements RequestFirmbankingP
     @Override
     public FirmbankingRequestJpaEntity modifyFirmbankingRequest(FirmbankingRequestJpaEntity firmbankingRequestJpaEntity) {
         return repository.save(firmbankingRequestJpaEntity);
+    }
+
+    @Override
+    public FirmbankingRequestJpaEntity getFirmbankingRequest(FirmbankingRequest.FirmbankingAggregateIdentifier firmbankingAggregateIdentifier) {
+        List<FirmbankingRequestJpaEntity> entityList =  repository.findByAggregateIdentifier(firmbankingAggregateIdentifier.value());
+        if(entityList.size() > 0) {
+            return entityList.get(0);
+        }
+        return null;
     }
 
     @Override
