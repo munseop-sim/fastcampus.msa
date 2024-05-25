@@ -254,7 +254,7 @@ gradle-app.setting
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,intellij,gradle,git,java,kotlin
 /.idea/
-/.idea/
 /db/conf.d/
 /db/
 /.idea/
+/axon-server-se/

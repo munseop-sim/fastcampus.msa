@@ -38,4 +38,5 @@ public class MemberMoney {
     public record MemberMoneyId(String value){}
     public record MembershipId(String value){}
     public record Balance(Integer value){}
+    public record MoneyAggregateIdentifier(String value){}
 }

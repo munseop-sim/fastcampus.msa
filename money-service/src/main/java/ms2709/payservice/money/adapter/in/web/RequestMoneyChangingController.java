@@ -2,6 +2,8 @@ package ms2709.payservice.money.adapter.in.web;
 
 import lombok.RequiredArgsConstructor;
 import ms2709.global.WebAdapter;
+import ms2709.payservice.money.application.port.in.CreateMemberMoneyCommand;
+import ms2709.payservice.money.application.port.in.CreateMemberMoneyUseCase;
 import ms2709.payservice.money.application.port.in.IncreaseMoneyRequestCommand;
 import ms2709.payservice.money.application.port.in.IncreaseMoneyRequestUseCase;
 import ms2709.payservice.money.domain.MoneyChangingRequest;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class RequestMoneyChangingController {
     private final IncreaseMoneyRequestUseCase increaseMoneyRequestUseCase;
+    private final CreateMemberMoneyUseCase createMemberMoneyUseCase;
 
     @PostMapping(path = "/money/increase")
     MoneyChangingResultDetail increaseMoneyChangingRequest(@RequestBody IncreaseMoneyChangingRequest request) {
@@ -60,6 +63,19 @@ public class RequestMoneyChangingController {
                 moneyChangingRequest.getChangingMoneyAmount());
         return resultDetail;
     }
+    @PostMapping(path = "/money/create-member-money")
+    void createMemberMoney(@RequestBody CreateMemberMoneyRequest request) {
+        createMemberMoneyUseCase.createMemberMoney(new CreateMemberMoneyCommand(request.getTargetMembershipId()));
+    }
 
+    @PostMapping(path = "/money/increase-eda")
+    void increaseMoneyChangingRequestByEvent(@RequestBody IncreaseMoneyChangingRequest request) {
+        IncreaseMoneyRequestCommand command = IncreaseMoneyRequestCommand.builder()
+                .targetMembershipId(request.getTargetMembershipId())
+                .amount(request.getAmount())
+                .build();
+
+        increaseMoneyRequestUseCase.increaseMoneyRequestByEvent(command);
+    }
 
 }

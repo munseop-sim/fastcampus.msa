@@ -32,5 +32,6 @@ public class IncreaseMoneyRequestCommand extends SelfValidating<IncreaseMoneyReq
     public IncreaseMoneyRequestCommand(String targetMembershipId, int amount) {
         this.targetMembershipId = targetMembershipId;
         this.amount = amount;
+        this.validateSelf();
     }
 }

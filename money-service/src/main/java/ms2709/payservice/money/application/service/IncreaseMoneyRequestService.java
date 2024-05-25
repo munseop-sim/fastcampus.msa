@@ -7,13 +7,15 @@ import ms2709.global.UseCase;
 import ms2709.global.kafka.RechargingMoneyTask;
 import ms2709.global.kafka.SubTask;
 import ms2709.payservice.money.CountDownLatchManager;
+import ms2709.payservice.money.adapter.axon.command.CreateMoneyCommand;
+import ms2709.payservice.money.adapter.axon.command.IncreaseMoneyRequestEventCommand;
 import ms2709.payservice.money.adapter.out.persistence.MoneyChangingRequestMapper;
 import ms2709.payservice.money.adapter.out.persistence.entity.MemberMoneyJpaEntity;
+import ms2709.payservice.money.application.port.in.CreateMemberMoneyCommand;
+import ms2709.payservice.money.application.port.in.CreateMemberMoneyUseCase;
 import ms2709.payservice.money.application.port.in.IncreaseMoneyRequestCommand;
 import ms2709.payservice.money.application.port.in.IncreaseMoneyRequestUseCase;
-import ms2709.payservice.money.application.port.out.ExternalBankingPort;
-import ms2709.payservice.money.application.port.out.IncreaseMoneyPort;
-import ms2709.payservice.money.application.port.out.SendRechargingMoneyTaskPort;
+import ms2709.payservice.money.application.port.out.*;
 import ms2709.payservice.money.domain.MemberMoney;
 import ms2709.payservice.money.domain.MoneyChangingRequest;
 import ms2709.payservice.money.domain.enums.MoneyChangingRequestStatusTypes;
@@ -22,7 +24,7 @@ import ms2709.payservice.money.domain.enums.MoneyChangingTypes;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
+import org.axonframework.commandhandling.gateway.CommandGateway;
 /**
  * 클래스 설명
  *
@@ -34,12 +36,15 @@ import java.util.UUID;
 @UseCase
 @RequiredArgsConstructor
 @Slf4j
-public class IncreaseMoneyRequestService implements IncreaseMoneyRequestUseCase {
+public class IncreaseMoneyRequestService implements IncreaseMoneyRequestUseCase, CreateMemberMoneyUseCase {
     private final IncreaseMoneyPort increaseMoneyPort;
     private final MoneyChangingRequestMapper mapper;
     private final ExternalBankingPort externalBankingPort;
     private final SendRechargingMoneyTaskPort sendRechargingMoneyTaskPort;
     private final CountDownLatchManager countDownLatchManager;
+    private final CommandGateway commandGateway; //axon framework 에서 이벤트를 발생시키기 위한 CommandGateway
+    private final GetMemberMoneyPort getMemberMoneyPort;
+    private final CreateMemberMoneyPort createMemberMoneyPort;
 
     @Override
     public MoneyChangingRequest increaseMoneyRequest(IncreaseMoneyRequestCommand command) {
@@ -148,6 +153,43 @@ public class IncreaseMoneyRequestService implements IncreaseMoneyRequestUseCase 
 
     }
 
+    @Override
+    public void increaseMoneyRequestByEvent(IncreaseMoneyRequestCommand command) {
+        MemberMoneyJpaEntity memberMoneyEntity = getMemberMoneyPort.getMemberMoney(new MemberMoney.MembershipId(command.getTargetMembershipId()));
+        String moneyIdentifier = memberMoneyEntity.getAggregateIdentifier();
+
+        // String moneyIdentifier = memberMoneyEntity.getAggregateIdentifier();
+        IncreaseMoneyRequestEventCommand eventCommand = IncreaseMoneyRequestEventCommand.builder()
+                .aggregateIdentifier(moneyIdentifier)
+                .targetMembershipId(command.getTargetMembershipId())
+                .amount(command.getAmount())
+                .build();
+
+        commandGateway.send(eventCommand)
+                .whenComplete((Object result, Throwable throwable) -> {
+                    if (throwable == null) {
+                        log.info("Aggregate ID:{}", result.toString());
+
+                        MemberMoneyJpaEntity memberMoneyJpaEntity = increaseMoneyPort.increaseMoney(
+                                new MemberMoney.MembershipId(command.getTargetMembershipId())
+                                , command.getAmount());
+
+                        if (memberMoneyJpaEntity != null) {
+                            mapper.mapToDomainEntity(increaseMoneyPort.createMoneyChangingRequest(
+                                            new MoneyChangingRequest.TargetMembershipId(command.getTargetMembershipId()),
+                                            MoneyChangingTypes.INCREASE,
+                                            new MoneyChangingRequest.ChangingMoneyAmount(command.getAmount()),
+                                            MoneyChangingRequestStatusTypes.SUCCESS,
+                                            new MoneyChangingRequest.Uuid(UUID.randomUUID().toString())
+                                    )
+                            );
+                        }
+                    } else {
+                        log.error("error : {}", throwable.getMessage());
+                    }
+                });
+    }
+
     private MoneyChangingRequest getMoneyChangingRequest(IncreaseMoneyRequestCommand command) {
         MemberMoneyJpaEntity memberMoneyJpaEntity = increaseMoneyPort.increaseMoney(
                 new MemberMoney.MembershipId(command.getTargetMembershipId())
@@ -165,5 +207,21 @@ public class IncreaseMoneyRequestService implements IncreaseMoneyRequestUseCase 
         }
 
         return null;
+    }
+
+    @Override
+    public void createMemberMoney(CreateMemberMoneyCommand command) {
+        commandGateway.send(CreateMoneyCommand.builder().membershipId(command.getTargetMembershipId()).build())
+                .whenComplete((Object result, Throwable throwable) -> {
+                    if (throwable == null) {
+                        log.info("Create Money Aggregate ID:{}", result.toString());
+                        createMemberMoneyPort.createMemberMoney(
+                                new MemberMoney.MembershipId(command.getTargetMembershipId())
+                                , new MemberMoney.MoneyAggregateIdentifier(result.toString()));
+                    } else {
+                        throwable.printStackTrace();
+                        log.error("error : {}", throwable.getMessage());
+                    }
+                });
     }
 }

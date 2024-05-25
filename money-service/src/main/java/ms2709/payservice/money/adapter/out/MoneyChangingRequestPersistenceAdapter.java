@@ -6,6 +6,8 @@ import ms2709.payservice.money.adapter.out.persistence.entity.MemberMoneyJpaEnti
 import ms2709.payservice.money.adapter.out.persistence.entity.MoneyChangingRequestJpaEntity;
 import ms2709.payservice.money.adapter.out.persistence.repository.MemberMoneyJpaEntityRepository;
 import ms2709.payservice.money.adapter.out.persistence.repository.MoneyChangingRequestJpEntityRepository;
+import ms2709.payservice.money.application.port.out.CreateMemberMoneyPort;
+import ms2709.payservice.money.application.port.out.GetMemberMoneyPort;
 import ms2709.payservice.money.application.port.out.IncreaseMoneyPort;
 import ms2709.payservice.money.domain.MemberMoney;
 import ms2709.payservice.money.domain.MoneyChangingRequest;
@@ -13,6 +15,7 @@ import ms2709.payservice.money.domain.enums.MoneyChangingRequestStatusTypes;
 import ms2709.payservice.money.domain.enums.MoneyChangingTypes;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 클래스 설명
@@ -24,7 +27,7 @@ import java.time.LocalDate;
  */
 @RequiredArgsConstructor
 @PersistenceAdapter
-public class MoneyChangingRequestPersistenceAdapter implements IncreaseMoneyPort {
+public class MoneyChangingRequestPersistenceAdapter implements IncreaseMoneyPort, GetMemberMoneyPort, CreateMemberMoneyPort {
     private final MemberMoneyJpaEntityRepository memberMoneyJpaEntityRepository;
     private final MoneyChangingRequestJpEntityRepository moneyChangingRequestJpEntityRepository;
 
@@ -44,14 +47,13 @@ public class MoneyChangingRequestPersistenceAdapter implements IncreaseMoneyPort
 
     @Override
     public MemberMoneyJpaEntity increaseMoney(MemberMoney.MembershipId membershipId, int increaseMoneyAmount) {
-        var memberId = Long.parseLong(membershipId.value());
-        var targetItem = memberMoneyJpaEntityRepository.findByMembershipId(memberId)
-                .stream()
-                .findFirst()
-                .orElseGet(() ->new MemberMoneyJpaEntity(memberId, 0));
+        MemberMoneyJpaEntity entity;
 
-        targetItem.increaseMoney(increaseMoneyAmount);
-        return memberMoneyJpaEntityRepository.save(targetItem);
+        List<MemberMoneyJpaEntity> entityList =  memberMoneyJpaEntityRepository.findByMembershipId(Long.parseLong(membershipId.value()));
+        entity = entityList.get(0);
+
+        entity.setBalance(entity.getBalance() + increaseMoneyAmount);
+        return  memberMoneyJpaEntityRepository.save(entity);
     }
 
     @Override
@@ -61,5 +63,23 @@ public class MoneyChangingRequestPersistenceAdapter implements IncreaseMoneyPort
 
         targetItem.setChangingMoneyStatus(status.getStatusIndex());
         return moneyChangingRequestJpEntityRepository.save(targetItem);
+    }
+
+    @Override
+    public void createMemberMoney(MemberMoney.MembershipId memberId, MemberMoney.MoneyAggregateIdentifier aggregateIdentifier) {
+        MemberMoneyJpaEntity entity = new MemberMoneyJpaEntity(
+                Long.parseLong(memberId.value()),
+                0, aggregateIdentifier.value()
+        );
+        memberMoneyJpaEntityRepository.save(entity);
+    }
+
+    @Override
+    public MemberMoneyJpaEntity getMemberMoney(MemberMoney.MembershipId memberId) {
+        List<MemberMoneyJpaEntity> entityList =  memberMoneyJpaEntityRepository.findByMembershipId(Long.parseLong(memberId.value()));
+        //todo - 예외처리
+        return entityList.get(0);
+
+
     }
 }

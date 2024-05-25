@@ -16,6 +16,19 @@ services:
             - MYSQL_USER=mysqluser
             - MYSQL_PASSWORD=mysqlpw
 
+    axon-server:
+        container_name: axon-server
+        image: axoniq/axonserver:4.6.3-jdk-11-dev
+        networks:
+            - ms2709_pay_service_network
+        ports:
+            - "8024:8024"
+            - "8124:8124"
+        volumes:
+            - axon-server-data:/axonserver/data
+            - axon-server-events:/axonserver/events
+            - axon-server-config:/axonserver/config:ro
+
     membership-service:
         image: ms2709.pay-service.member-service:0.0.1
         networks:
@@ -69,6 +82,10 @@ services:
         depends_on:
             - mysql
         environment:
+            - AXON_AXONSERVER_SERVERS=axon-server:8124
+            - AXON_SERIALIZER_EVENTS=jackson
+            - AXON_SERIALIZER_MESSAGES=jackson
+            - AXON_SERIALIZER_GENERAL=xstream
             - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/ms2709_pay?useSSL=false&allowPublicKeyRetrieval=true
             - SPRING_DATASOURCE_USERNAME=mysqluser
             - SPRING_DATASOURCE_PASSWORD=mysqlpw
@@ -179,6 +196,25 @@ services:
             - KAFKA_CLUSTERS_0_NAME=local
             - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:29092
             - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+volumes:
+    axon-server-data:
+        driver: local
+        driver_opts:
+            o: bind
+            type: none
+            device: ${PWD}/axon-server-se/data
+    axon-server-events:
+        driver: local
+        driver_opts:
+            o: bind
+            type: none
+            device: ${PWD}/axon-server-se/events
+    axon-server-config:
+        driver: local
+        driver_opts:
+            o: bind
+            type: none
+            device: ${PWD}/axon-server-se/config
 networks:
     ms2709_pay_service_network:
         driver: bridge
