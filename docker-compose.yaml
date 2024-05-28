@@ -140,7 +140,7 @@ services:
 
 
     logging-consumer:
-        image: ms2709.pay-service.logging-consumer:0.0.1
+        image: ms2709.pay-service.logging-consumer:0.0.2
         networks:
             - ms2709_pay_service_network
         restart: always

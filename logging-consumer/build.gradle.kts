@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "ms2709.pay-service.logging"
-version = "0.0.1"
+version = "0.0.2"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17

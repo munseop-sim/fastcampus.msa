@@ -42,7 +42,6 @@ public class RegisteredBankAccountAggregate {
     public void handle(@NotNull CheckRegisteredBankAccountCommand command, RequestBankAccountInfoPort bankAccountInfoPort) {
         log.info("CheckRegisteredBankAccountCommand Handler");
 
-
         id = command.getAggregateIdentifier();
         //command를 통해 이 어그리거트(RegisteredBankAccount)가 정상인지 확인 필요
         BankAccount bankAccount = bankAccountInfoPort.getBankAccountInfo(new GetBankAccountRequest(command.getBankName(), command.getBankAccountNumber()));

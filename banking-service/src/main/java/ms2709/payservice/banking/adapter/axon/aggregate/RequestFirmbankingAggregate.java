@@ -2,10 +2,17 @@ package ms2709.payservice.banking.adapter.axon.aggregate;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import ms2709.global.axon.command.RequestFirmbankingCommand;
+import ms2709.global.axon.event.RequestFirmbankingFinishedEvent;
 import ms2709.payservice.banking.adapter.axon.command.CreateRequestFirmbankingCommand;
 import ms2709.payservice.banking.adapter.axon.command.UpdateRequestFirmbankingCommand;
 import ms2709.payservice.banking.adapter.axon.event.RequestFirmbankingCreatedEvent;
 import ms2709.payservice.banking.adapter.axon.event.UpdateRequestFirmbankingEvent;
+import ms2709.payservice.banking.adapter.out.external.bank.ExternalFirmbankingRequest;
+import ms2709.payservice.banking.adapter.out.external.bank.FirmbankingResult;
+import ms2709.payservice.banking.application.port.out.RequestExternalFirmbankingPort;
+import ms2709.payservice.banking.application.port.out.RequestFirmbankingPort;
+import ms2709.payservice.banking.domain.FirmbankingRequest;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
@@ -63,6 +70,46 @@ public class RequestFirmbankingAggregate {
         apply(new UpdateRequestFirmbankingEvent(command.getFirmbankingStatus()));
         return id;
     }
+
+    @CommandHandler
+    public RequestFirmbankingAggregate(RequestFirmbankingCommand command, RequestFirmbankingPort firmbankingPort, RequestExternalFirmbankingPort externalFirmbankingPort){
+        System.out.println("RequestFirmbankingCommand Handler");
+        id = command.getAggregateIdentifier();
+
+        //펌뱅킹 수행
+        firmbankingPort.createFirmbankingRequest(
+            new FirmbankingRequest.FromBankName(command.getToBankName()),
+            new FirmbankingRequest.FromBankAccountNumber(command.getToBankAccountNumber()),
+            new FirmbankingRequest.ToBankName("fastcampus-bank"),
+            new FirmbankingRequest.ToBankAccountNumber("123-333-9999"),
+            new FirmbankingRequest.MoneyAmount(command.getMoneyAmount()),
+            new FirmbankingRequest.FirmBankingStatus(0),
+            new FirmbankingRequest.FirmbankingAggregateIdentifier(id));
+
+        // firmbanking!
+        FirmbankingResult firmbankingResult = externalFirmbankingPort.requestExternalFirmbanking(new ExternalFirmbankingRequest(
+            command.getFromBankName(),
+            command.getFromBankAccountNumber(),
+            command.getToBankName(),
+            command.getToBankAccountNumber(),
+            command.getMoneyAmount()
+        ));
+
+        int resultCode = firmbankingResult.getResultCode();
+
+        // 0. 성공, 1. 실패
+        apply(new RequestFirmbankingFinishedEvent(
+            command.getRequestFirmbankingId(),
+            command.getRechargeRequestId(),
+            command.getMembershipId(),
+            command.getToBankName(),
+            command.getToBankAccountNumber(),
+            command.getMoneyAmount(),
+            resultCode,
+            id
+        ));
+    }
+
 
     @EventSourcingHandler
     public void on(RequestFirmbankingCreatedEvent event) {
