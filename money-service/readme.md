@@ -20,3 +20,20 @@
 2. Dependency for AxonFramework. Connect to Axon Server(MoneyService)
 3. Axon Adapter 패키지 생성, EventSourcing기반, MoneyService Refactoring
 4. Axon Server Admin에서 EventSourcing 확인
+
+## 사가패턴 적용 flow 
+- endpoint : /money/increase-eda
+- 조건
+  - `member-service` member가 먼저 생성되어 있어야함
+  - `bank-accoubt` bank-account가 먼저 생성되어 있어야함
+  - `money-service` member-money가 먼저 생성되어 있어야함
+```mermaid
+flowchart TB
+  increase-eda["money-service:web.in\n(request)증감요청"] --> get_member_money["money-service:query\n회원머니조회"]
+  get_member_money -->|to-bank|check_bank_account["bank-service:command\n계좌확인"]
+  check_bank_account -->|to-bank|request_firm_banking["bank-service:command\n펌뱅킹요청"]
+  check_bank_account -->|false|END["계좌연동필요"]
+  request_firm_banking -->|success|update_member_money["money-service:command\n회원머니업데이트"] --> end_saga
+    request_firm_banking -->|fail|fail_firm_banking["펌뱅킹실패"] -->|to-bank|roll_back_firmbankig["bank-service:\n펌뱅킹결과 rollback"] --> end_saga
+    
+```

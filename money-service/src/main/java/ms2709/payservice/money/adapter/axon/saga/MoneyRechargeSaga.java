@@ -125,34 +125,35 @@ public class MoneyRechargeSaga {
                         new MemberMoney.MembershipId(event.getMembershipId())
                         , event.getMoneyAmount()
                 );
-
-//        if (resultEntity == null) {
-//            // 실패 시, 롤백 이벤트
-//            String rollbackFirmbankingId = UUID.randomUUID().toString();
-//            SagaLifecycle.associateWith("rollbackFirmbankingId", rollbackFirmbankingId);
-//            commandGateway.send(new RollbackFirmbankingRequestCommand(
-//                    rollbackFirmbankingId
-//                    ,event.getRequestFirmbankingAggregateIdentifier()
-//                    , event.getRechargingRequestId()
-//                    , event.getMembershipId()
-//                    , event.getToBankName()
-//                    , event.getToBankAccountNumber()
-//                    , event.getMoneyAmount()
-//            )).whenComplete(
-//                    (result, throwable) -> {
-//                        if (throwable != null) {
-//                            throwable.printStackTrace();
-//                            System.out.println("RollbackFirmbankingRequestCommand Command failed");
-//                        } else {
-//                            System.out.println("Saga success : "+ result.toString());
-//                            SagaLifecycle.end();
-//                        }
-//                    }
-//            );
-//        } else {
-//            // 성공 시, saga 종료.
-//            SagaLifecycle.end();
-//        }
+        //rollback 테스트용
+//        MemberMoneyJpaEntity resultEntity = null;
+        if (resultEntity == null) {
+            // 실패 시, 롤백 이벤트
+            String rollbackFirmbankingId = UUID.randomUUID().toString();
+            SagaLifecycle.associateWith("rollbackFirmbankingId", rollbackFirmbankingId);
+            commandGateway.send(new RollbackFirmbankingRequestCommand(
+                    rollbackFirmbankingId
+                    ,event.getRequestFirmbankingAggregateIdentifier()
+                    , event.getRechargingRequestId()
+                    , event.getMembershipId()
+                    , event.getToBankName()
+                    , event.getToBankAccountNumber()
+                    , event.getMoneyAmount()
+            )).whenComplete(
+                    (result, throwable) -> {
+                        if (throwable != null) {
+                            throwable.printStackTrace();
+                            System.out.println("RollbackFirmbankingRequestCommand Command failed");
+                        } else {
+                            System.out.println("Saga success : "+ result.toString());
+                            SagaLifecycle.end();
+                        }
+                    }
+            );
+        } else {
+            // 성공 시, saga 종료.
+            SagaLifecycle.end();
+        }
     }
 //
     @EndSaga

@@ -3,7 +3,9 @@ package ms2709.payservice.banking.adapter.axon.aggregate;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import ms2709.global.axon.command.RequestFirmbankingCommand;
+import ms2709.global.axon.command.RollbackFirmbankingRequestCommand;
 import ms2709.global.axon.event.RequestFirmbankingFinishedEvent;
+import ms2709.global.axon.event.RollbackFirmbankingFinishedEvent;
 import ms2709.payservice.banking.adapter.axon.command.CreateRequestFirmbankingCommand;
 import ms2709.payservice.banking.adapter.axon.command.UpdateRequestFirmbankingCommand;
 import ms2709.payservice.banking.adapter.axon.event.RequestFirmbankingCreatedEvent;
@@ -128,5 +130,37 @@ public class RequestFirmbankingAggregate {
     }
 
     public RequestFirmbankingAggregate() {
+    }
+
+
+    @CommandHandler
+    public RequestFirmbankingAggregate(@NotNull RollbackFirmbankingRequestCommand command, RequestFirmbankingPort firmbankingPort, RequestExternalFirmbankingPort externalFirmbankingPort) {
+        System.out.println("RollbackFirmbankingRequestCommand Handler");
+        id = UUID.randomUUID().toString();
+
+        firmbankingPort.createFirmbankingRequest(
+                new FirmbankingRequest.FromBankName("fastcampus-bank"),
+                new FirmbankingRequest.FromBankAccountNumber("123-333-9999"),
+                new FirmbankingRequest.ToBankName(command.getBankName()),
+                new FirmbankingRequest.ToBankAccountNumber(command.getBankAccountNumber()),
+                new FirmbankingRequest.MoneyAmount(command.getMoneyAmount()),
+                new FirmbankingRequest.FirmBankingStatus(0),
+                new FirmbankingRequest.FirmbankingAggregateIdentifier(id));
+
+        // firmbanking!
+        externalFirmbankingPort.requestExternalFirmbanking(
+                new ExternalFirmbankingRequest(
+                        "fastcampus",
+                        "123-333-9999",
+                        command.getBankName(),
+                        command.getBankAccountNumber(),
+                        command.getMoneyAmount()
+                ));
+
+        apply(new RollbackFirmbankingFinishedEvent(
+                command.getRollbackFirmbankingId(),
+                command.getMembershipId(),
+                id)
+        );
     }
 }
