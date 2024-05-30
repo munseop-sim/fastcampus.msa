@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/logging-consumer" />
             <option value="$PROJECT_DIR$/member-service" />
             <option value="$PROJECT_DIR$/money-service" />
+            <option value="$PROJECT_DIR$/payment-service" />
             <option value="$PROJECT_DIR$/remittance-service" />
             <option value="$PROJECT_DIR$/task-consumer" />
           </set>
