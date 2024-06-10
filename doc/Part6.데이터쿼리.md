@@ -16,13 +16,16 @@
 - 쉽고 직관적이지만, 전체시스템의 영향도를 파악해야 하며, 성능과 안정성을 고려해야한다.
 
 ## CQRS PATTERN (Command, Query의 분리)
+- 정의 : Command(데이터 변동)와 Query(데이터 조회)를 분리함으로써 MSA환경에서 비즈니스 로직이 포함된 API를 구현하는 패턴
+- AxonFramework에서 CQRS 패턴을 프레임워크 내부에서 지원하고 있음
 - `MSA 원칙 중 하나 : 모든 데이터는 데이터 ownership을 가진 서비스에서만 그 데이터를 관리해야 한다`
 다만 `데이터를 변경시키는 주체는 ownership을 가진 서비스`라면 다른 서비스에서 데이터를 조회를 하기 위한 목적으로 소유하는 것은 괜찮다. 하지만 조회를 위한 데이터 서빙의 주체는 data ownership을 가진 주체 서비스이여야 한다.
 - Command : 데이터 변동
 - Query : 데이터 조회 or 접근 (변동 불가), Query를 위한 별도의 서비스 식별
 - `API Aggregation Pattern`보다 구현이 어렵지만 `API Aggregation Pattern`의 단점을 거의 모두 극복할 수 있다. 
-
+![axon framework에서 제공하는 CQRS](md-resource/axon-cqrs.png)
 
 ### 실습 (data-generator 모듈)
 1. 고객 DummyData 삽입
 2. 고객 DummyData 가 페이 서비스의 충전/감액을 하는 상황을 가정한 데이터 삽입
+![img.png](md-resource/part6-01.png)
