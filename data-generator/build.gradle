@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+//
+//group = 'ms2709.pay-service'
+//version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = '17'
+}
+
+dependencies {
+
+    runtimeOnly 'mysql:mysql-connector-java:8.0.33'
+    implementation 'org.json:json:20200518'
+}

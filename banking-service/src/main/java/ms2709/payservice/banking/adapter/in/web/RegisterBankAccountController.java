@@ -45,7 +45,7 @@ public class RegisterBankAccountController {
         return saved;
     }
 
-    @PostMapping(path = "/banking/account/register-eda")
+    @PostMapping(path = "/account/register-eda")
     void registeredBankAccountByEvent(@RequestBody RegisterBankAccountRequest request) {
         RegisterBankAccountCommand command = RegisterBankAccountCommand.builder()
                 .membershipId(request.getMembershipId())

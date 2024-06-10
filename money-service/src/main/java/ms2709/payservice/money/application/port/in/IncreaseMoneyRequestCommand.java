@@ -26,7 +26,6 @@ public class IncreaseMoneyRequestCommand extends SelfValidating<IncreaseMoneyReq
     private final String targetMembershipId;
 
     @NotNull
-    @Positive
     private final int amount;
 
     public IncreaseMoneyRequestCommand(String targetMembershipId, int amount) {
