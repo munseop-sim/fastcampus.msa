@@ -14,4 +14,5 @@ import ms2709.payservice.member.domain.Membership
  */
 interface FindMembershipPort {
     fun findMembership(membershipId: Membership.MembershipId): MembershipJpaEntity?
+    fun findMembershipByAddress(addressName: String): List<MembershipJpaEntity>
 }

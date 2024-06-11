@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RequiredArgsConstructor
 @PersistenceAdapter
-public class MoneyChangingRequestPersistenceAdapter implements IncreaseMoneyPort, GetMemberMoneyPort, CreateMemberMoneyPort {
+public class MoneyChangingRequestPersistenceAdapter implements IncreaseMoneyPort, CreateMemberMoneyPort {
     private final MemberMoneyJpaEntityRepository memberMoneyJpaEntityRepository;
     private final MoneyChangingRequestJpEntityRepository moneyChangingRequestJpEntityRepository;
 
@@ -74,12 +74,5 @@ public class MoneyChangingRequestPersistenceAdapter implements IncreaseMoneyPort
         memberMoneyJpaEntityRepository.save(entity);
     }
 
-    @Override
-    public MemberMoneyJpaEntity getMemberMoney(MemberMoney.MembershipId memberId) {
-        List<MemberMoneyJpaEntity> entityList =  memberMoneyJpaEntityRepository.findByMembershipId(Long.parseLong(memberId.value()));
-        //todo - 예외처리
-        return entityList.get(0);
 
-
-    }
 }

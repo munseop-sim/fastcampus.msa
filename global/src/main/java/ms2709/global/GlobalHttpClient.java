@@ -31,10 +31,20 @@ public class GlobalHttpClient {
         return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
     }
 
-    public CompletableFuture<HttpResponse<String>> sendPostRequest(String url, String body) {
+    public HttpResponse<String> sendPostRequest(String url, String body) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(body))
                 .uri(java.net.URI.create(url))
+                .header("Content-Type", "application/json")
+                .build();
+        return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    public CompletableFuture<HttpResponse<String>> sendPostRequestAsync(String url, String body){
+        HttpRequest request = HttpRequest.newBuilder()
+                .POST(HttpRequest.BodyPublishers.ofString(body))
+                .uri(java.net.URI.create(url))
+                .header("Content-Type", "application/json")
                 .build();
         return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString());
     }

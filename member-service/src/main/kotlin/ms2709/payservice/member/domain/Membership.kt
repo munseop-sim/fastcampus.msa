@@ -68,11 +68,7 @@ class Membership {
         }
     }
 
-    class MemberIsValid(val value: Boolean) {
-        init {
-            require(value) { "isValid must be true" }
-        }
-    }
+    data class MemberIsValid(val value: Boolean)
 
-    class MemberIsCorp(val value: Boolean) {}
+    data class MemberIsCorp(val value: Boolean)
 }

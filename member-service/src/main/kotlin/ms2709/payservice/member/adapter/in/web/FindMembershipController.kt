@@ -2,6 +2,7 @@ package ms2709.payservice.member.adapter.`in`.web
 
 import ms2709.global.WebAdapter
 import ms2709.payservice.member.application.port.`in`.FindMembershipCommand
+import ms2709.payservice.member.application.port.`in`.FindMembershipListByAddressCommand
 import ms2709.payservice.member.application.port.`in`.FindMembershipUseCase
 import ms2709.payservice.member.domain.Membership
 import org.springframework.web.bind.annotation.GetMapping
@@ -28,6 +29,12 @@ class FindMembershipController(
     fun findMembership(@PathVariable membershipId: String):Membership {
         return FindMembershipCommand(membershipId).run {
             findMembershipUseCase.findMembership(this)
+        }
+    }
+    @GetMapping("/find/address/{addressName}")
+    fun findMembershipByAddress(@PathVariable addressName: String):List<Membership> {
+        return FindMembershipListByAddressCommand(addressName).run {
+            findMembershipUseCase.findMembershipByAddress(this)
         }
     }
 }

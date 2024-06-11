@@ -44,6 +44,10 @@ class MembershipPersistenceAdapter (
         return membershipJpaRepository.findByIdOrNull(membershipId.value.toLong())
     }
 
+    override fun findMembershipByAddress(addressName: String): List<MembershipJpaEntity> {
+        return membershipJpaRepository.findByAddress(addressName)
+    }
+
     override fun modifyMembership(
         membershipId: Membership.MembershipId,
         memberName: Membership.MemberName,

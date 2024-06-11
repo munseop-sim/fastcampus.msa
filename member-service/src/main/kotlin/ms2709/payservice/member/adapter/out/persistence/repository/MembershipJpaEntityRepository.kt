@@ -2,6 +2,7 @@ package ms2709.payservice.member.adapter.out.persistence.repository
 
 import ms2709.payservice.member.adapter.out.persistence.entity.MembershipJpaEntity
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Query
 
 /**
  *
@@ -12,4 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository
  * @version 1.0
  * @since 2024-04-29 9:10PM
  */
-interface MembershipJpaEntityRepository : JpaRepository<MembershipJpaEntity, Long>
+interface MembershipJpaEntityRepository : JpaRepository<MembershipJpaEntity, Long>{
+    @Query("select m from MembershipJpaEntity m where m.address = :address")
+    fun findByAddress(address: String): List<MembershipJpaEntity>
+}
