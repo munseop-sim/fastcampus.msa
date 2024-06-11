@@ -18,7 +18,7 @@ import java.util.Properties;
  *
  * @author 심문섭
  * @version 1.0
- * @class TaskProducer
+ *  TaskProducer
  * @since 2024-05-21 오전 8:24
  */
 @Slf4j

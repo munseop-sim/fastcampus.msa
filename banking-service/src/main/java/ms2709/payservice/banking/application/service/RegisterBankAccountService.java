@@ -17,7 +17,7 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
  *
  * @author 심문섭
  * @version 1.0
- * @class RegisterBankAccountService
+ *  RegisterBankAccountService
  * @since 2024-05-13 오후 11:21
  */
 

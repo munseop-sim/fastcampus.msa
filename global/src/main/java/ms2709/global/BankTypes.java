@@ -5,7 +5,7 @@ package ms2709.global;
  *
  * @author 심문섭
  * @version 1.0
- * @class BankTypes
+ *  BankTypes
  * @since 2024-05-21 오전 8:21
  */
 public enum BankTypes {

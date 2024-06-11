@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author 심문섭
  * @version 1.0
- * @class GetMemberMoneyPort
+ *  GetMemberMoneyPort
  * @since 2024-05-25 오후 2:20
  */
 public interface GetMemberMoneyPort {

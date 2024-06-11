@@ -4,7 +4,7 @@ package ms2709.payservice.remittance.application.port.out.money
  *
  * 클래스 설명
  *
- * @class MoneyPort
+ *  MoneyPort
  * @author 심문섭
  * @version 1.0
  * @since 2024-05-25 오전 7:47

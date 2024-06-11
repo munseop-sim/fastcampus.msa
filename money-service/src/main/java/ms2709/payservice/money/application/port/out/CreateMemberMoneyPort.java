@@ -7,7 +7,7 @@ import ms2709.payservice.money.domain.MemberMoney;
  *
  * @author 심문섭
  * @version 1.0
- * @class CreateMemberMoneyPort
+ *  CreateMemberMoneyPort
  * @since 2024-05-25 오후 2:18
  */
 public interface CreateMemberMoneyPort {

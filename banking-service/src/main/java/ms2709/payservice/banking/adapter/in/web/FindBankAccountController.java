@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author 심문섭
  * @version 1.0
- * @class FindBankAccountController
+ *  FindBankAccountController
  * @since 2024-05-15 오전 10:38
  */
 @WebAdapter

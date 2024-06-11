@@ -11,7 +11,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
  *
  * @author 심문섭
  * @version 1.0
- * @class UpdateRequestFirmbankingCommand
+ *  UpdateRequestFirmbankingCommand
  * @since 2024-05-25 오후 3:06
  */
 @Builder

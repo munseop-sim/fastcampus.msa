@@ -13,7 +13,7 @@
 // *
 // * 클래스 설명
 // *
-// * @class RegisterMembershipServiceTest
+// *  RegisterMembershipServiceTest
 // * @author 심문섭
 // * @version 1.0
 // * @since 2024-04-29 10:27 PM

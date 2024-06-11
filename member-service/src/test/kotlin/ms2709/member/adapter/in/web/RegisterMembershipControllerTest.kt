@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 /**
- * @class RegisterMembershipControllerTest
+ *  RegisterMembershipControllerTest
  * @author 심문섭
  * @version 1.0
  * @since 2024-05-01 오전 10:28

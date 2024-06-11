@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
  *
  * 클래스 설명
  *
- * @class RemittanceConfig
+ *  RemittanceConfig
  * @author 심문섭
  * @version 1.0
  * @since 2024-05-25 오전 6:32

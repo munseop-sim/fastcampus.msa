@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest
  *
  * 클래스 설명
  *
- * @class MembershipMapperImplTest
+ *  MembershipMapperImplTest
  * @author 심문섭
  * @version 1.0
  * @since 2024-04-29 9:35 PM

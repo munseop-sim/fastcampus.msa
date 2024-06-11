@@ -3,7 +3,7 @@
  *
  * @author 심문섭
  * @version 1.0
- * @class HelloWorld
+ *  HelloWorld
  * @since 2024-06-10 오후 8:37
  */
 public class HelloWorld {

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  *
  * @author 심문섭
  * @version 1.0
- * @class MembershipServiceAdapter
+ *  MembershipServiceAdapter
  * @since 2024-05-20 오후 10:00
  */
 @Component

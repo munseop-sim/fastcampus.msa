@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  *
  * @author 심문섭
  * @version 1.0
- * @class LoggingAspect
+ *  LoggingAspect
  * @since 2024-05-19 오후 10:47
  */
 @Aspect

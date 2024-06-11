@@ -10,7 +10,7 @@ import java.lang.annotation.*;
  *
  * @author 심문섭
  * @version 1.0
- * @class WebAdapter
+ *  WebAdapter
  * @since 2024-05-02 오전 8:27
  */
 @Target({ElementType.TYPE})

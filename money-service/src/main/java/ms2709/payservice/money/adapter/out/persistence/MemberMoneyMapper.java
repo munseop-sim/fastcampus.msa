@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  *
  * @author 심문섭
  * @version 1.0
- * @class MemberMoneyMapper
+ *  MemberMoneyMapper
  * @since 2024-06-11 오전 11:01
  */
 @Component

@@ -9,7 +9,7 @@ import java.lang.annotation.*;
  *
  * @author 심문섭
  * @version 1.0
- * @class UseCase
+ *  UseCase
  * @since 2024-05-02 오전 8:26
  */
 @Target({ElementType.TYPE})

@@ -11,7 +11,7 @@ import ms2709.global.SelfValidating;
  *
  * @author 심문섭
  * @version 1.0
- * @class CreateMoneyCommand
+ *  CreateMoneyCommand
  * @since 2024-05-25 오후 1:43
  */
 

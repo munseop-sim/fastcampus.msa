@@ -11,7 +11,7 @@ import ms2709.payservice.money.domain.enums.MoneyChangingTypes;
  *
  * @author 심문섭
  * @version 1.0
- * @class MoneyChangingResultDetail
+ *  MoneyChangingResultDetail
  * @since 2024-05-16 오전 8:26
  */
 @Data

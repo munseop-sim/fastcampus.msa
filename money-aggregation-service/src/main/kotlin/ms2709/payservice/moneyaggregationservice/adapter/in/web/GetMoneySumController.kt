@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
  *
  * 클래스 설명
  *
- * @class GetMoneySumController
+ *  GetMoneySumController
  * @author 심문섭
  * @version 1.0
  * @since 2024-06-11 오후 12:46

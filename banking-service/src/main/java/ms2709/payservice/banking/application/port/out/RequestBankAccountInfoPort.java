@@ -8,7 +8,7 @@ import ms2709.payservice.banking.adapter.out.external.bank.GetBankAccountRequest
  *
  * @author 심문섭
  * @version 1.0
- * @class RequestBankAccountInfoPort
+ *  RequestBankAccountInfoPort
  * @since 2024-05-15 오전 7:14
  */
 public interface RequestBankAccountInfoPort {

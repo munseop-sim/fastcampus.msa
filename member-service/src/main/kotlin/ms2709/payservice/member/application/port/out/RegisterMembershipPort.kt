@@ -7,7 +7,7 @@ import ms2709.payservice.member.domain.Membership
  *
  * 멤버십 등록을 위한 포트
  *
- * @class RegisterMembershipPort
+ *  RegisterMembershipPort
  * @author 심문섭
  * @version 1.0
  * @since 2024-04-29 10:18 PM

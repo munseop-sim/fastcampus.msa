@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
  *
  * @author 심문섭
  * @version 1.0
- * @class UpdateFirmbankingRequest
+ *  UpdateFirmbankingRequest
  * @since 2024-05-25 오후 3:46
  */
 

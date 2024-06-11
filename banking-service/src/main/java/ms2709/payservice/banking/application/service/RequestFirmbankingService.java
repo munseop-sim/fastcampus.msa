@@ -26,7 +26,7 @@ import java.util.UUID;
  *
  * @author 심문섭
  * @version 1.0
- * @class RequestFirmbankingService
+ *  RequestFirmbankingService
  * @since 2024-05-15 오후 12:00
  */
 

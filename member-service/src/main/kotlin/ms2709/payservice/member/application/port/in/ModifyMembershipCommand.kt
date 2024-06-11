@@ -9,7 +9,7 @@ import ms2709.global.SelfValidating
  *
  * 클래스 설명
  *
- * @class ModifyMembershipCommand
+ *  ModifyMembershipCommand
  * @author 심문섭
  * @version 1.0
  * @since 2024-05-08 오전 8:20

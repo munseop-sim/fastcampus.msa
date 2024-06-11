@@ -8,7 +8,7 @@ import ms2709.payservice.banking.domain.FirmbankingRequest;
  *
  * @author 심문섭
  * @version 1.0
- * @class FindFirmbankingRequestPort
+ *  FindFirmbankingRequestPort
  * @since 2024-05-15 오후 1:44
  */
 public interface FindFirmbankingRequestPort {

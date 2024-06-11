@@ -25,7 +25,7 @@ import static org.axonframework.modelling.command.AggregateLifecycle.apply;
  *
  * @author 심문섭
  * @version 1.0
- * @class MemberMoneyAggregate
+ *  MemberMoneyAggregate
  * @since 2024-05-25 오후 1:39
  */
 

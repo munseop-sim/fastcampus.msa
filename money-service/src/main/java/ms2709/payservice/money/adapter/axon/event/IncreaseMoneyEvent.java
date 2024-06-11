@@ -12,7 +12,7 @@ import ms2709.payservice.money.application.port.in.IncreaseMoneyRequestCommand;
  *
  * @author 심문섭
  * @version 1.0
- * @class IncreaseMoneyEvent
+ *  IncreaseMoneyEvent
  * @since 2024-05-25 오후 2:11
  */
 

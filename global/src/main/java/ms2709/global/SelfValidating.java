@@ -9,7 +9,7 @@ import java.util.Set;
  *
  * @author 심문섭
  * @version 1.0
- * @class SelfValidating
+ *  SelfValidating
  * @since 2024-05-02 오전 8:24
  */
 public abstract class SelfValidating<T> {

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
  *
  * @author 심문섭
  * @version 1.0
- * @class RegisteredBankAccountJpaEntity
+ *  RegisteredBankAccountJpaEntity
  * @since 2024-05-13 오후 10:15
  */
 @Entity

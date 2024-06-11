@@ -18,7 +18,7 @@ import java.util.*
  *
  * 클래스 설명
  *
- * @class TaskConsumer
+ *  TaskConsumer
  * @author 심문섭
  * @version 1.0
  * @since 2024-05-21 오전 8:45

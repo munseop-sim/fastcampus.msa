@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @author 심문섭
  * @version 1.0
- * @class MoneyChangingRequestPersistenceAdapter
+ *  MoneyChangingRequestPersistenceAdapter
  * @since 2024-05-16 오전 8:40
  */
 @RequiredArgsConstructor

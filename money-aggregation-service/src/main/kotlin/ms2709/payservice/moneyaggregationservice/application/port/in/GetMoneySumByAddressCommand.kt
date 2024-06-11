@@ -7,7 +7,7 @@ import ms2709.global.SelfValidating
  *
  * 클래스 설명
  *
- * @class GetMoneySumByAddressCommand
+ *  GetMoneySumByAddressCommand
  * @author 심문섭
  * @version 1.0
  * @since 2024-06-11 오후 12:50

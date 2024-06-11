@@ -13,7 +13,7 @@ import java.util.concurrent.CompletableFuture;
  *
  * @author 심문섭
  * @version 1.0
- * @class GlobalHttpClient
+ *  GlobalHttpClient
  * @since 2024-05-20 오후 10:01
  */
 @Component

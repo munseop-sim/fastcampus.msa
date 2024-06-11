@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
  *
  * @author 심문섭
  * @version 1.0
- * @class MembershipStatus
+ *  MembershipStatus
  * @since 2024-05-20 오후 10:21
  */
 @Data

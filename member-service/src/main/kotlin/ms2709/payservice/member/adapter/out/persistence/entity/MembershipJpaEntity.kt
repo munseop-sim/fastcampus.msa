@@ -6,7 +6,7 @@ import jakarta.persistence.*
  *
  * 멤버십 정보를 저장하고 조회하기 위한 JPA Entity
  *
- * @class MembershipJpaEntity
+ *  MembershipJpaEntity
  * @author 심문섭
  * @version 1.0
  * @since 2024-04-29 9:04 PM

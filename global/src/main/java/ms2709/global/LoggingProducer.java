@@ -15,7 +15,7 @@ import java.util.Properties;
  *
  * @author 심문섭
  * @version 1.0
- * @class LoggingProducer
+ *  LoggingProducer
  * @since 2024-05-19 오후 10:48
  */
 @Component

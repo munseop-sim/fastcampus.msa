@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
  *
  * @author 심문섭
  * @version 1.0
- * @class CreateMemberMoneyRequest
+ *  CreateMemberMoneyRequest
  * @since 2024-05-25 오후 1:31
  */
 @Data

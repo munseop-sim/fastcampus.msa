@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
  *
  * 클래스 설명
  *
- * @class MoneyAggregationConfig
+ *  MoneyAggregationConfig
  * @author 심문섭
  * @version 1.0
  * @since 2024-06-11 오전 11:48

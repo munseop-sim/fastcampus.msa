@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author 심문섭
  * @version 1.0
- * @class FindMoneyService
+ *  FindMoneyService
  * @since 2024-06-11 오전 10:48
  */
 @UseCase

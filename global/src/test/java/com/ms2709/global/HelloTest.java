@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author 심문섭
  * @version 1.0
- * @class HelloTest
+ *  HelloTest
  * @modified
  * @since 2024-05-02 오전 9:45
  */

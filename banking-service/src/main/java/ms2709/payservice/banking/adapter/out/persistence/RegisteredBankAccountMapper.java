@@ -9,7 +9,7 @@ import ms2709.global.Mapper;
  *
  * @author 심문섭
  * @version 1.0
- * @class RegisteredBankAccountMapper
+ *  RegisteredBankAccountMapper
  * @since 2024-05-13 오후 10:15
  */
 @Mapper

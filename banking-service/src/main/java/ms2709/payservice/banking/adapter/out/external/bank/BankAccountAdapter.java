@@ -10,7 +10,7 @@ import ms2709.global.ExternalSystemAdapter;
  *
  * @author 심문섭
  * @version 1.0
- * @class BankAccountAdapter
+ *  BankAccountAdapter
  * @since 2024-05-15 오전 7:13
  */
 @ExternalSystemAdapter

@@ -9,7 +9,7 @@ import lombok.Getter;
  *
  * @author 심문섭
  * @version 1.0
- * @class MemberMoney
+ *  MemberMoney
  * @since 2024-05-16 오전 8:43
  */
 @AllArgsConstructor(access = AccessLevel.PRIVATE)

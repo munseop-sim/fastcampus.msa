@@ -7,7 +7,7 @@ import lombok.Data;
  *
  * @author 심문섭
  * @version 1.0
- * @class BankAccount
+ *  BankAccount
  * @since 2024-05-15 오전 7:32
  */
 @Data

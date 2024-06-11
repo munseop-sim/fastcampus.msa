@@ -8,7 +8,7 @@ import ms2709.payservice.banking.adapter.out.external.bank.FirmbankingResult;
  *
  * @author 심문섭
  * @version 1.0
- * @class RequestExternalFirmbankingPort
+ *  RequestExternalFirmbankingPort
  * @since 2024-05-15 오전 11:53
  */
 public interface RequestExternalFirmbankingPort {

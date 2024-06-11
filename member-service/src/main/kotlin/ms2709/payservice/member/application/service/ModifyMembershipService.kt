@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
  *
  * 클래스 설명
  *
- * @class ModifyMembershipService
+ *  ModifyMembershipService
  * @author 심문섭
  * @version 1.0
  * @since 2024-05-08 오전 8:20

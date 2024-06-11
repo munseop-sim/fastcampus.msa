@@ -11,7 +11,7 @@ import java.util.UUID;
  *
  * @author 심문섭
  * @version 1.0
- * @class FirmbankingReqeust
+ *  FirmbankingReqeust
  * @since 2024-05-15 오전 7:16
  */
 @AllArgsConstructor(access = AccessLevel.PRIVATE)

@@ -7,7 +7,7 @@ import ms2709.payservice.member.domain.Membership
  *
  * 멤버십 조회를 위한 포트
  *
- * @class FindMembershipPort
+ *  FindMembershipPort
  * @author 심문섭
  * @version 1.0
  * @since 2024-04-29 10:44 PM

@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author 심문섭
  * @version 1.0
- * @class RegisteredBankAccountJpaEntityRepository
+ *  RegisteredBankAccountJpaEntityRepository
  * @since 2024-05-13 오후 10:16
  */
 public interface RegisteredBankAccountJpaEntityRepository extends JpaRepository<RegisteredBankAccountJpaEntity, Long> {

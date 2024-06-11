@@ -7,7 +7,7 @@ import java.time.LocalDateTime
  *
  * 클래스 설명
  *
- * @class PaymentJpaEntity
+ *  PaymentJpaEntity
  * @author 심문섭
  * @version 1.0
  * @since 2024-06-02 오후 11:32

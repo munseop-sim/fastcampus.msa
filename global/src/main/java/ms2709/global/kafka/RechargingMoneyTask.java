@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author 심문섭
  * @version 1.0
- * @class RechargingMoneyTask
+ *  RechargingMoneyTask
  * @since 2024-05-21 오전 8:12
  */
 @AllArgsConstructor

@@ -9,7 +9,7 @@ import ms2709.payservice.remittance.application.port.`in`.RequestRemittanceComma
  *
  * 클래스 설명
  *
- * @class RequestRemittancePort
+ *  RequestRemittancePort
  * @author 심문섭
  * @version 1.0
  * @since 2024-05-25 오전 7:41

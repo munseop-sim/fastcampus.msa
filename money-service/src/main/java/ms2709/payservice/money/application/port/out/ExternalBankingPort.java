@@ -5,7 +5,7 @@ package ms2709.payservice.money.application.port.out;
  *
  * @author 심문섭
  * @version 1.0
- * @class ExternalBankingPort
+ *  ExternalBankingPort
  * @since 2024-05-16 오후 9:50
  */
 public interface ExternalBankingPort {

@@ -4,7 +4,7 @@ package ms2709.payservice.payment.adapter.out.service
  *
  * 클래스 설명
  *
- * @class RegisteredBankAccount
+ *  RegisteredBankAccount
  * @author 심문섭
  * @version 1.0
  * @since 2024-06-03 오전 12:06

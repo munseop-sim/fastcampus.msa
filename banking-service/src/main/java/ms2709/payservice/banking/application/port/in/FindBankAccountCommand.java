@@ -11,7 +11,7 @@ import ms2709.global.SelfValidating;
  *
  * @author 심문섭
  * @version 1.0
- * @class FindBankAccountCommand
+ *  FindBankAccountCommand
  * @since 2024-05-15 오전 10:42
  */
 @Data

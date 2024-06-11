@@ -5,7 +5,7 @@ package ms2709.payservice.banking.application.port.out;
  *
  * @author 심문섭
  * @version 1.0
- * @class GetMembershipPort
+ *  GetMembershipPort
  * @since 2024-05-20 오후 9:56
  */
 public interface GetMembershipPort {

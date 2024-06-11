@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author 심문섭
  * @version 1.0
- * @class BankingConfig
+ *  BankingConfig
  * @since 2024-05-20 오전 8:14
  */
 

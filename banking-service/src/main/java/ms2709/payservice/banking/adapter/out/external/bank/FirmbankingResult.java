@@ -7,7 +7,7 @@ import lombok.Data;
  *
  * @author 심문섭
  * @version 1.0
- * @class FirmbankingResult
+ *  FirmbankingResult
  * @since 2024-05-15 오전 11:54
  */
 @Data

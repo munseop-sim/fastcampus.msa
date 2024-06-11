@@ -4,7 +4,7 @@ package ms2709.payservice.member.adapter.`in`.web
  *
  * 클래스 설명
  *
- * @class ModifyMembershipRequest
+ *  ModifyMembershipRequest
  * @author 심문섭
  * @version 1.0
  * @since 2024-05-08 오전 8:19

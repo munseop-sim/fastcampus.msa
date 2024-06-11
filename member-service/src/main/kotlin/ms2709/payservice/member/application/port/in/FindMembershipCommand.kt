@@ -8,7 +8,7 @@ import ms2709.global.SelfValidating
  *
  * 멤버십 조회를 위한 커맨드
  *
- * @class FindMembershipCommand
+ *  FindMembershipCommand
  * @author 심문섭
  * @version 1.0
  * @since 2024-04-29 10:41 PM

@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author 심문섭
  * @version 1.0
- * @class FindMoneyUseCase
+ *  FindMoneyUseCase
  * @since 2024-06-11 오전 10:47
  */
 public interface FindMoneyUseCase {

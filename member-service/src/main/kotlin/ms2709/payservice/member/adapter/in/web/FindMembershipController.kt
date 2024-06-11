@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
  *
  * 멤버십 조회를 위한 컨트롤러
  *
- * @class FindMembershipController
+ *  FindMembershipController
  * @author 심문섭
  * @version 1.0
  * @since 2024-04-29 10:39 PM

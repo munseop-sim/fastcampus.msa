@@ -7,7 +7,7 @@ import ms2709.global.kafka.RechargingMoneyTask;
  *
  * @author 심문섭
  * @version 1.0
- * @class SendRechargingMoneyTaskPort
+ *  SendRechargingMoneyTaskPort
  * @since 2024-05-21 오전 8:23
  */
 public interface SendRechargingMoneyTaskPort {

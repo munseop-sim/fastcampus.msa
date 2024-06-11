@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author 심문섭
  * @version 1.0
- * @class RegisteredBankAccountPersistenceAdapter
+ *  RegisteredBankAccountPersistenceAdapter
  * @since 2024-05-13 오후 10:17
  */
 @RequiredArgsConstructor

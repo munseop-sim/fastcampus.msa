@@ -33,7 +33,7 @@ import static org.axonframework.modelling.command.AggregateLifecycle.apply;
  *
  * @author 심문섭
  * @version 1.0
- * @class RequestFirmbankingAggregate
+ *  RequestFirmbankingAggregate
  * @since 2024-05-25 오후 3:05
  */
 @Aggregate()

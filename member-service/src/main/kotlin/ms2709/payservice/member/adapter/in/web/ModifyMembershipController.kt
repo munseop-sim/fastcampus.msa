@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
  *
  * 클래스 설명
  *
- * @class ModifyMembershipController
+ *  ModifyMembershipController
  * @author 심문섭
  * @version 1.0
  * @since 2024-05-08 오전 8:18

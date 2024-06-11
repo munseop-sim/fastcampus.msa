@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
  *
  * @author 심문섭
  * @version 1.0
- * @class UpdateRequestFirmbankingEvent
+ *  UpdateRequestFirmbankingEvent
  * @since 2024-05-25 오후 3:09
  */
 @AllArgsConstructor

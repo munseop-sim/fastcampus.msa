@@ -10,7 +10,7 @@ import java.lang.annotation.*;
  *
  * @author 심문섭
  * @version 1.0
- * @class Mapper
+ *  Mapper
  * @since 2024-05-02 오전 8:28
  */
 @Target({ElementType.TYPE})

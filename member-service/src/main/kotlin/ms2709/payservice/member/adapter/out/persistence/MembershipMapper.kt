@@ -10,7 +10,7 @@ import kotlin.reflect.full.primaryConstructor
  *
  * 멤버십 정보를 DomainEntity로 변환하기 위한 Mapper
  *
- * @class MembershipMapper
+ *  MembershipMapper
  * @author 심문섭
  * @version 1.0
  * @since 2024-04-29 9:11PM

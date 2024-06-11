@@ -8,7 +8,7 @@ import ms2709.payservice.banking.domain.RegisteredBankAccount;
  *
  * @author 심문섭
  * @version 1.0
- * @class RegisterBankAccountPort
+ *  RegisterBankAccountPort
  * @since 2024-05-13 오후 11:22
  */
 public interface RegisterBankAccountPort {

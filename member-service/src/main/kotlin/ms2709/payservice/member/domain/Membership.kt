@@ -3,7 +3,7 @@ package ms2709.payservice.member.domain
 /**
  * Membership 도메인 클래스
  *
- * @class Membership
+ *  Membership
  * @author 심문섭
  * @version 1.0
  * @since 2024-04-29 8:42 AM

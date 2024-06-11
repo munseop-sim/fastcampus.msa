@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author 심문섭
  * @version 1.0
- * @class RegisterBankAccountController
+ *  RegisterBankAccountController
  * @since 2024-05-13 오후 10:14
  */
 @WebAdapter

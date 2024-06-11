@@ -9,7 +9,7 @@ import ms2709.global.SelfValidating
  *
  * 멤버십 등록을 위한 커맨드
  *
- * @class RegisterMembershipCommand
+ *  RegisterMembershipCommand
  * @author 심문섭
  * @version 1.0
  * @since 2024-04-29 10:09PM

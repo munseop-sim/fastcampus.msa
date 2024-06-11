@@ -11,7 +11,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
  *
  * @author 심문섭
  * @version 1.0
- * @class IncreaseMoneyRequestEventCommand
+ *  IncreaseMoneyRequestEventCommand
  * @since 2024-05-25 오후 2:12
  */
 @Builder

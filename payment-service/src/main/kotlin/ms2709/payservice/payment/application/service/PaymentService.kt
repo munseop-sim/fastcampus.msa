@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
  *
  * 클래스 설명
  *
- * @class PaymentService
+ *  PaymentService
  * @author 심문섭
  * @version 1.0
  * @since 2024-06-02 오후 11:24

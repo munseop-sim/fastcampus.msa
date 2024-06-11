@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author 심문섭
  * @version 1.0
- * @class RequestFirmbankingJpaEntityRepository
+ *  RequestFirmbankingJpaEntityRepository
  * @since 2024-05-15 오전 11:39
  */
 public interface FirmbankingRequestJpaEntityRepository extends JpaRepository<FirmbankingRequestJpaEntity,Long> {

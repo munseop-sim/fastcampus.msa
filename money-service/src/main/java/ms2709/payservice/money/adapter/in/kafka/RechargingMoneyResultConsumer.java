@@ -24,7 +24,7 @@ import java.time.Duration;
  *
  * @author 심문섭
  * @version 1.0
- * @class RechargingMoneyResultConsumer
+ *  RechargingMoneyResultConsumer
  * @since 2024-05-21 오전 9:04
  */
 @Slf4j

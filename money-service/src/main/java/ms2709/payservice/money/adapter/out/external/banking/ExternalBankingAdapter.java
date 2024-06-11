@@ -8,7 +8,7 @@ import ms2709.payservice.money.application.port.out.ExternalBankingPort;
  *
  * @author 심문섭
  * @version 1.0
- * @class ExternalBankingAdapter
+ *  ExternalBankingAdapter
  * @since 2024-05-16 오후 9:51
  */
 @ExternalSystemAdapter

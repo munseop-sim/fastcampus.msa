@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author 심문섭
  * @version 1.0
- * @class FindRequestFirmbankingController
+ *  FindRequestFirmbankingController
  * @since 2024-05-15 오후 1:36
  */
 @WebAdapter

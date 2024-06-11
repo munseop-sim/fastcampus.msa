@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
  *
  * @author 심문섭
  * @version 1.0
- * @class SubTask
+ *  SubTask
  * @since 2024-05-21 오전 8:10
  */
 @Data

@@ -15,7 +15,7 @@ import java.time.Duration
  *
  * 클래스 설명
  *
- * @class LoggingConsumer
+ *  LoggingConsumer
  * @author 심문섭
  * @version 1.0
  * @since 2024-05-20 오전 8:32

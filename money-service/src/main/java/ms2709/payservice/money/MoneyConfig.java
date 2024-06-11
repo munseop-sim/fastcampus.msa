@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author 심문섭
  * @version 1.0
- * @class MoneyConfig
+ *  MoneyConfig
  * @since 2024-05-19 오후 11:38
  */
 @Configuration

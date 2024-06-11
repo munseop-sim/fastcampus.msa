@@ -9,7 +9,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
  *
  * @author 심문섭
  * @version 1.0
- * @class RollbackFirmbankingRequestCommand
+ *  RollbackFirmbankingRequestCommand
  * @modified
  * @since 2024-05-28 오전 8:38
  */

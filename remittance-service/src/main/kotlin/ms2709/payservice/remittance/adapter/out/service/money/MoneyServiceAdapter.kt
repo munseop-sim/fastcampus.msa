@@ -8,7 +8,7 @@ import ms2709.payservice.remittance.application.port.out.money.MoneyPort
  *
  * 클래스 설명
  *
- * @class MoneyServiceAdapter
+ *  MoneyServiceAdapter
  * @author 심문섭
  * @version 1.0
  * @since 2024-05-25 오전 8:23

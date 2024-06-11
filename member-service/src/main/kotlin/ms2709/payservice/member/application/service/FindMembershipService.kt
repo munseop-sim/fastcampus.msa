@@ -11,7 +11,7 @@ import ms2709.payservice.member.domain.Membership
 import org.springframework.transaction.annotation.Transactional
 
 /**
- * @class FindMembershipService
+ *  FindMembershipService
  * @author 심문섭
  * @version 1.0
  * @since 2024-04-29 10:43 PM

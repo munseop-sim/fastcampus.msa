@@ -3,7 +3,7 @@
  *
  * @author 심문섭
  * @version 1.0
- * @class DummyMoneyDataSimulator
+ *  DummyMoneyDataSimulator
  * @since 2024-06-10 오후 9:03
  */
 

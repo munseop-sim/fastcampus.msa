@@ -4,7 +4,7 @@ package ms2709.payservice.remittance.adapter.`in`.web
  *
  * 송금 요청을 위한 정보가 담긴 class
  *
- * @class RequestRemittanceRequest
+ *  RequestRemittanceRequest
  * @author 심문섭
  * @version 1.0
  * @since 2024-05-25 오전 6:42

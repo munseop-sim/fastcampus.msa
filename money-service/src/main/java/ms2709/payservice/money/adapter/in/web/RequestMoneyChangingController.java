@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author 심문섭
  * @version 1.0
- * @class RequestMoneyChangingController
+ *  RequestMoneyChangingController
  * @since 2024-05-16 오전 8:25
  */
 @WebAdapter

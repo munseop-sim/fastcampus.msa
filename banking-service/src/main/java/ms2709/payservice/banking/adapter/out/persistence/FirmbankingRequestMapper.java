@@ -11,7 +11,7 @@ import java.util.UUID;
  *
  * @author 심문섭
  * @version 1.0
- * @class RequestFirmbankingMapper
+ *  RequestFirmbankingMapper
  * @since 2024-05-15 오전 11:40
  */
 @Mapper
