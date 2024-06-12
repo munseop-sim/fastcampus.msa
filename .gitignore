@@ -258,3 +258,5 @@ gradle-app.setting
 /db/
 /.idea/
 /axon-server-se/
+/money-query-service/gradlew
+/money-query-service/gradlew.bat
