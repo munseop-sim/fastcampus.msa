@@ -13,4 +13,5 @@ import ms2709.payservice.payment.domain.Payment
  */
 interface RequestPaymentUseCase {
     fun requestPayment(requestPaymentCommand: RequestPaymentCommand):Payment
+    fun finishSettlement(finishSettlementCommand: FinishSettlementCommand)
 }

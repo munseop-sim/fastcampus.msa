@@ -3,7 +3,9 @@ package ms2709.payservice.payment.adapter.`in`.web
 import ms2709.global.WebAdapter
 import ms2709.payservice.payment.application.port.`in`.RequestPaymentCommand
 import ms2709.payservice.payment.application.port.`in`.RequestPaymentUseCase
+import ms2709.payservice.payment.application.port.`in`.StatusListUseCase
 import ms2709.payservice.payment.domain.Payment
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -21,9 +23,10 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/payment")
 class RequestPaymentController(
-    private val requestPaymentUseCase: RequestPaymentUseCase
-) {
+    private val requestPaymentUseCase: RequestPaymentUseCase,
+    private val statusListUseCase: StatusListUseCase
 
+) {
 
     @PostMapping("/request")
     fun requestPayment(paymentRequest: PaymentRequest):Payment {
@@ -35,4 +38,16 @@ class RequestPaymentController(
         ))
     }
 
+    /**
+     * 정산에서 사용하기 위한 정상 상태의 결제 목록을 조회한다.
+     */
+    @GetMapping("/normal-status")
+    fun getNormalStatusPaymentList(normalStatusPaymentListRequest: NormalStatusPaymentListRequest):List<Payment>{
+        return statusListUseCase.getNormalStatusPaymentList(normalStatusPaymentListRequest.of())
+    }
+
+    @PostMapping("/finish-settlement")
+    fun finishPayment(finishSettlementRequest: FinishSettlementRequest) {
+        return requestPaymentUseCase.finishSettlement(finishSettlementRequest.of())
+    }
 }

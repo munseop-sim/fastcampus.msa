@@ -4,7 +4,10 @@ import ms2709.global.PersistenceAdapter
 import ms2709.payservice.payment.adapter.out.persistence.entity.PaymentJpaEntity
 import ms2709.payservice.payment.adapter.out.persistence.repository.PaymentJpaEntityRepository
 import ms2709.payservice.payment.application.port.out.CreatePaymentPort
+import ms2709.payservice.payment.application.port.out.GetPaymentPort
+import ms2709.payservice.payment.application.port.out.GetPaymentStatusListPort
 import ms2709.payservice.payment.domain.Payment
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 /**
@@ -20,7 +23,7 @@ import java.time.LocalDateTime
 class PaymentPersistenceAdapter (
     private val repository: PaymentJpaEntityRepository,
     private val mapper:PaymentMapper
-): CreatePaymentPort {
+): CreatePaymentPort, GetPaymentStatusListPort, GetPaymentPort {
     override fun createPayment(
         requestMemberId: String,
         requestPrice: String,
@@ -38,5 +41,13 @@ class PaymentPersistenceAdapter (
             )
         )
         return mapper.mapToDomainEntity(paymentJpaEntity)
+    }
+
+    override fun getNormalStatusPaymentList(startDate: LocalDate, endDate: LocalDate): List<Payment> {
+        return repository.getPaymentListByTermAndStatus(startDate.atStartOfDay(), endDate.atStartOfDay(), 0).map { mapper.mapToDomainEntity(it) }
+    }
+
+    override fun getPayment(paymentId: String): PaymentJpaEntity? {
+        return repository.findById(paymentId.toLong()).orElse(null)
     }
 }

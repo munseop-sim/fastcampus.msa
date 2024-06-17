@@ -26,8 +26,12 @@
 1. Command
    1. 결제요청 : request-payment
 2. Query
-   1. 정상결제건 조회 : find-normal-payments 
+   1. 정상결제건 조회 : find-normal-payments
+   2. 정산을 위한 API
+      1. 정상 결제 건들의 List를 얻어오기 위한 API 필요
+      2. 각 결제 건들의 상태를 변경하기 위한 API 필요
 
 ### 패키지 구조
 ![img.png](md-resource/img03.png)
     
+
