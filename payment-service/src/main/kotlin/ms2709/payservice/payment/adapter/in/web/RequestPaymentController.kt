@@ -5,10 +5,7 @@ import ms2709.payservice.payment.application.port.`in`.RequestPaymentCommand
 import ms2709.payservice.payment.application.port.`in`.RequestPaymentUseCase
 import ms2709.payservice.payment.application.port.`in`.StatusListUseCase
 import ms2709.payservice.payment.domain.Payment
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 /**
  *
@@ -47,7 +44,7 @@ class RequestPaymentController(
     }
 
     @PostMapping("/finish-settlement")
-    fun finishPayment(finishSettlementRequest: FinishSettlementRequest) {
+    fun finishPayment(@RequestBody finishSettlementRequest: FinishSettlementRequest) {
         return requestPaymentUseCase.finishSettlement(finishSettlementRequest.of())
     }
 }

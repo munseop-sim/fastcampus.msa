@@ -1,0 +1,13 @@
+package ms2709.payservice.settlement.settlementservice
+
+import org.junit.jupiter.api.Test
+import org.springframework.boot.test.context.SpringBootTest
+
+@SpringBootTest
+class SettlementServiceApplicationTests {
+
+    @Test
+    fun contextLoads() {
+    }
+
+}
