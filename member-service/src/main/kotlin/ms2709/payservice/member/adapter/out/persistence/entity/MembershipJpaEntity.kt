@@ -34,15 +34,18 @@ class MembershipJpaEntity {
     @Column(name="MEMBERSHIP_IS_CORP")
     var isCorp:Boolean? = null
 
+    @Column(name="MEMBERSHIP_REFRESH_TOKEN")
+    var refreshToken: String? = null
 
     constructor(){}
 
-    constructor(name: String?, address: String?, email: String?, isValid: Boolean?, isCorp: Boolean?) {
+    constructor(name: String?, address: String?, email: String?, isValid: Boolean?, isCorp: Boolean?, refreshToken:String) {
         this.name = name
         this.address = address
         this.email = email
         this.isValid = isValid
         this.isCorp = isCorp
+        this.refreshToken = refreshToken
     }
 
     constructor(
@@ -51,7 +54,8 @@ class MembershipJpaEntity {
         address: String?,
         email: String?,
         isValid: Boolean?,
-        isCorp: Boolean?
+        isCorp: Boolean?,
+        refreshToken: String?
     ) {
         this.membershipId = membershipId
         this.name = name
@@ -59,5 +63,6 @@ class MembershipJpaEntity {
         this.email = email
         this.isValid = isValid
         this.isCorp = isCorp
+        this.refreshToken = refreshToken
     }
 }

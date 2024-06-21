@@ -21,4 +21,9 @@ interface ModifyMembershipPort {
         memberIsValid: Membership.MemberIsValid,
         memberIsCorp: Membership.MemberIsCorp
     ):MembershipJpaEntity
+
+    fun modifyRefreshToken(
+        membershipId:Membership.MembershipId,
+        refreshToken:String
+    ):MembershipJpaEntity
 }

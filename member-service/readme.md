@@ -12,3 +12,14 @@
   - address : string
   - isValid : boolean
   - isCorp : boolean
+
+
+## API
+### 보안을 위한 API
+- /membership/login 
+  - 실제로 로그인을 하지는 않고 mebershipID에 대해서 JWT Token, Refresh Token을 발급
+  - jwt token은 10초, refresh token은 30초로 설정
+- /membership/refresh-token
+  - refresh token을 활용하여 새로운 JWT Token을 발급하기 위한 API
+- /membership/auth
+  - jwt 토큰으로 고객을 특정하고, 인증하기 위한 API (사용자 정보 조회)

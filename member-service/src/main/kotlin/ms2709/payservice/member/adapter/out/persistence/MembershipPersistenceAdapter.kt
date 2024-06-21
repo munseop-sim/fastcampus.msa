@@ -35,7 +35,8 @@ class MembershipPersistenceAdapter (
                 email = email.value,
                 address = address.value,
                 isValid = isValid.value,
-                isCorp = isCorp.value
+                isCorp = isCorp.value,
+                refreshToken = ""
             )
         )
     }
@@ -62,6 +63,12 @@ class MembershipPersistenceAdapter (
         entity.address = memberAddress.value
         entity.isValid = memberIsValid.value
         entity.isCorp = memberIsCorp.value
+        return membershipJpaRepository.save(entity)
+    }
+
+    override fun modifyRefreshToken(membershipId: Membership.MembershipId, refreshToken: String): MembershipJpaEntity {
+        val entity = membershipJpaRepository.findByIdOrNull(membershipId.value.toLong())!!
+        entity.refreshToken = refreshToken
         return membershipJpaRepository.save(entity)
     }
 }
