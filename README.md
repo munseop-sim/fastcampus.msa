@@ -18,3 +18,9 @@
 - 주기적으로 정산작업을 진행하며, 여기서 생기는 모든 과정을 관리하는 서비스
 
 
+## kafka
+## axon server
+## dynamodb
+## vault
+## docker-compose
+

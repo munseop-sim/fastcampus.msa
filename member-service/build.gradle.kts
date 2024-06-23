@@ -31,11 +31,12 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
     testRuntimeOnly("com.h2database:h2")
-    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
-//    implementation("io.jsonwebtoken:jjwt-api:0.12.5")
-//    implementation("io.jsonwebtoken:jjwt-impl:0.12.5")
-//    implementation("io.jsonwebtoken:jjwt-jackson:0.12.5")
+
     implementation("com.auth0:java-jwt:4.4.0")
+
+    // https://mvnrepository.com/artifact/org.springframework.vault/spring-vault-core
+    implementation("org.springframework.vault:spring-vault-core:3.1.1")
+
 
     implementation(project(":global"))
 }

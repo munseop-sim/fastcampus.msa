@@ -13,7 +13,7 @@ import jakarta.persistence.*
  */
 @Table(name = "MEMBERSHIP")
 @Entity
-class MembershipJpaEntity {
+class MembershipJpaEntity : Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEMBERSHIP_ID")
@@ -64,5 +64,17 @@ class MembershipJpaEntity {
         this.isValid = isValid
         this.isCorp = isCorp
         this.refreshToken = refreshToken
+    }
+
+    public override fun clone(): MembershipJpaEntity {
+        return MembershipJpaEntity(
+            this.membershipId,
+            this.name,
+            this.address,
+            this.email,
+            this.isValid,
+            this.isCorp,
+            this.refreshToken
+        )
     }
 }
